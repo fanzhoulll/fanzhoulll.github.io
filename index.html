@@ -71,6 +71,16 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/27/programmingpearls/column1/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Column-1-Cracking-the-oyster"><a href="#Column-1-Cracking-the-oyster" class="headerlink" title="Column 1: Cracking the oyster"></a>Column 1: Cracking the oyster</h1><p>We need to solve a sorting problem. First let us see how to extract the key information from the conservation and define problem preciously. Then we introduce <em>bitmap</em>, a data structure can solve the problem nicely.</p>
@@ -82,25 +92,28 @@
 <p>A: Is there anything else you can tell me about the records (format/type of the data)?</p>
 <p>B: Each one is a seven-digit positive integer with no other associated data, and no integer can appear more than once.</p>
 </blockquote>
-<h2 id="Precise-problem-definition"><a href="#Precise-problem-definition" class="headerlink" title="Precise problem definition"></a>Precise problem definition</h2><p><em>Input:</em> A file containing at most <em>n</em> positive integers, each less than <em>n</em>, where $n=10^7$ 。 No integers appears two times in the input.</p>
+<h2 id="Precise-problem-definition"><a href="#Precise-problem-definition" class="headerlink" title="Precise problem definition"></a>Precise problem definition</h2><p><em>Input:</em> A file containing at most <em>n</em> positive integers, each less than <em>n</em>, where $n=10^7$  . No integers appears two times in the input.</p>
 <p><em>Output:</em> A sorted list in increasing order of the input integers.</p>
 <p><em>Constrains:</em> At most (roughly) a megabyte of storage is available in main memory; ample disk storage is available. The run time can be at most several minutes; a run time of ten seconds need not be decreased.</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>The key challenge is the memory constrain. If each number is represent as 32-bit number, then 1megabyte can at most store 250000 numbers. So we can’t store all the numbers in the memory and sort is using system sorting.</p>
-<p>This problem can be solved using <em>bitmap</em>. A bitmap is a set of bits. It can be used to store a set of number. For example, the set {1,2,3,5} can be represent in bitmap as:</p>
-<p>{0, 1, 1, 1, 0, 1}</p>
-<p>The bits representing numbers in the set are 1, and all other bits are 0.</p>
-<p>With bitmap we can store the 1 million number array with 10^7 bit, which is about 1250000 = 1.25 Mbyte. Then we could sort the array with following steps:</p>
-<p>(1) Initial the bitmap by setting all bits to 0</p>
-<p>(2) Reading each integer in the array, set corresponding bit to 1 in the bitmap</p>
-<p>(3) Produces the sorted output list by inspecting each bit and writing out the appropriate integer if the bit is one.</p>
-<p>This solution is simple and elegant. However it requires 1.25Mbyte space. If the 1Mbyte constrain is rigorous, then we could run two pass over all the input, each time handle only half of the data. For example, we can construct two bitmaps, each with only 625000 bits and represents the input falling in the bottom half and top half of the range.</p>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>(1) Defining the right problem. Pay attention to the memory/time limit. See if there is any special structure of the input that we can use to reduce the complexity of the algorithm.</p>
-<p>(2) Bitmap structure is perfect for storing the array with finite range. It is even better if no number appear twice in the array, but this is not a necessary condition.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>The key challenge is the memory constrain. If each number is represent as 32-bit number, then 1 Megabyte can at most store 250000 numbers. So we can’t store all the numbers in the memory and sort is using system sorting.</p>
+<p>This problem can be solved using <em>bitmap</em>. A bitmap is a stream of bits used to store a set of numbers. For example, the set {1,2,3,5} can be represented in bitmap as {0, 1, 1, 1, 0, 1}. The bits representing numbers in the set are 1, and all other bits are 0.</p>
+<p>With bitmap we can store the 1 million number array with only $10^7$ bits, which is about 1250000 = 1.25 Mbyte. Then we could sort the array with following steps:</p>
+<ol>
+<li><p>Initial the bitmap by setting all bits to 0</p>
+</li>
+<li><p>Reading each integer in the array, set corresponding bit to 1 in the bitmap</p>
+</li>
+<li><p>Produces the sorted output list by inspecting each bit and writing out the appropriate integer if the bit is one.</p>
+</li>
+</ol>
+<p>This solution requires 1.25Mbyte memory. If the 1Mbyte constrain is rigorous, then we could run two pass over all the input, each time handle only half of the data.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>(1) Defining the right problem. Pay attention to the memory/time constrain. See if there is any special structure of the input that we can use to reduce the complexity of the algorithm.</p>
+<p>(2) Bitmap structure is perfect for storing the array with finite range. It is better if there is no repetitive number in the array, but this is not a necessary condition.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/27/programmingpearls/column1/" data-id="cir4fg9al0001xxfyj9sayyo9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/27/programmingpearls/column1/" data-id="cir4fkcbf0001ynfye1cmetqg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/24/hello-world/" data-id="cir4fg99j0000xxfyrv92a66p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/24/hello-world/" data-id="cir4fkcan0000ynfyfw1zcvks" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +198,7 @@
       <ul>
         
           <li>
-            <a href="/2016/07/27/programmingpearls/column1/">(no title)</a>
+            <a href="/2016/07/27/programmingpearls/column1/">Hello World</a>
           </li>
         
           <li>
