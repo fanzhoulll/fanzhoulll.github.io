@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Blog, NexT" />
+  <meta name="keywords" content="Programming Pearls," />
 
 
 
@@ -84,13 +84,23 @@
 
 
 
+<meta name="description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fan Zhou">
+<meta property="og:title" content="Data structure programs (column 3)">
 <meta property="og:url" content="http://yoursite.com/2016/07/30/programmingpearls/column3/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:updated_time" content="2016-07-29T23:46:47.000Z">
+<meta property="og:description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/questionnaire">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/info">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/lettergenerator">
+<meta property="og:updated_time" content="2016-07-30T01:01:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fan Zhou">
+<meta name="twitter:title" content="Data structure programs (column 3)">
+<meta name="twitter:description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
+<meta name="twitter:image" content="http://yoursite.com/content/images/2016/7/questionnaire">
 
 
 
@@ -113,7 +123,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/07/30/programmingpearls/column3/"/>
 
-  <title>  | Fan Zhou </title>
+  <title> Data structure programs (column 3) | Fan Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -233,7 +243,7 @@
             
             
               
-                
+                Data structure programs (column 3)
               
             
           </h1>
@@ -273,7 +283,22 @@
       
 
       
-        
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.</p>
+<h2 id="Several-examples"><a href="#Several-examples" class="headerlink" title="Several examples"></a>Several examples</h2><h3 id="Represent-survey"><a href="#Represent-survey" class="headerlink" title="Represent survey"></a>Represent survey</h3><p>Consider how to code following questionnaire filled by students of a specific college.</p>
+<p><img src="/content/images/2016/7/questionnaire" alt="questionnaire"></p>
+<p>Actual questionnaire is much more complicated. The recommended way to store number is using array. For example, the array could be laid out according to output structure along the three dimensions of <em>campus</em>, <em>ethnic group</em> and all the <em>columns</em> in questionnaire.</p>
+<h3 id="Form-Letter-Programming"><a href="#Form-Letter-Programming" class="headerlink" title="Form-Letter Programming"></a>Form-Letter Programming</h3><p>Think how to print following information:</p>
+<p><img src="/content/images/2016/7/info" alt="info"></p>
+<p>A simple but tedious way was to use a sequence of print, while a better approach involves writing a form letter generator relies on a form letter schema like:</p>
+<p><img src="/content/images/2016/7/lettergenerator" alt="lettergenerator"></p>
+<p>Then we could print the scheme as it is if the letter is not <code>$</code>, otherwise we retrieve the corresponding field in the database as specified by the number following <code>$</code> and print it.</p>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p><em>Error message:</em> Instead of scatter hundreds of error messages throughout the code, it is better to access them using a single function.</p>
+<p><em>Word analysis:</em> Consider the application of removing the endings (‘-ing’, ‘-s’, ‘-ed’,etc). Using table to save the common ending can shorten the code length greatly.</p>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><ol>
+<li>A long stretch of similar code is often best expressed by array.</li>
+<li>Let the data structure the program: before writing code, good programmers thoroughly understand the input, the output and intermediate data structures around which programs are built.</li>
+</ol>
+
       
     </div>
 
@@ -292,6 +317,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Programming-Pearls/" rel="tag">#Programming Pearls</a>
+          
+        </div>
       
 
       
@@ -411,7 +442,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Several-examples"><span class="nav-number">2.</span> <span class="nav-text">Several examples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Represent-survey"><span class="nav-number">2.1.</span> <span class="nav-text">Represent survey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Form-Letter-Programming"><span class="nav-number">2.2.</span> <span class="nav-text">Form-Letter Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">2.3.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaways"><span class="nav-number">3.</span> <span class="nav-text">Takeaways</span></a></li></ol></div>
             
           </div>
         </section>
