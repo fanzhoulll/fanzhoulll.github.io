@@ -84,18 +84,19 @@
 
 
 
-<meta name="description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
+<meta name="description" content="IntroductionThis column introduce ways to write code carefully and verify its correctness based on an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted arra">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AHA! Algorithms (column 2)">
-<meta property="og:url" content="http://yoursite.com/2016/07/28/programmingpearls/column2/index.html">
+<meta property="og:title" content="Writing correct program (column 4)">
+<meta property="og:url" content="http://yoursite.com/2016/07/31/programmingpearls/column4/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
-<meta property="og:image" content="http://yoursite.com/content/images/2016/7/anagrams_pp_c2.png">
-<meta property="og:updated_time" content="2016-07-28T02:37:37.000Z">
+<meta property="og:description" content="IntroductionThis column introduce ways to write code carefully and verify its correctness based on an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted arra">
+<meta property="og:updated_time" content="2016-07-31T01:16:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AHA! Algorithms (column 2)">
-<meta name="twitter:description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
-<meta name="twitter:image" content="http://yoursite.com/content/images/2016/7/anagrams_pp_c2.png">
+<meta name="twitter:title" content="Writing correct program (column 4)">
+<meta name="twitter:description" content="IntroductionThis column introduce ways to write code carefully and verify its correctness based on an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted arra">
 
 
 
@@ -116,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/28/programmingpearls/column2/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/31/programmingpearls/column4/"/>
 
-  <title> AHA! Algorithms (column 2) | Fan Zhou </title>
+  <title> Writing correct program (column 4) | Fan Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -238,7 +239,7 @@
             
             
               
-                AHA! Algorithms (column 2)
+                Writing correct program (column 4)
               
             
           </h1>
@@ -250,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T08:21:09+08:00" content="2016-07-28">
-              2016-07-28
+            <time itemprop="dateCreated" datetime="2016-07-31T08:09:00+08:00" content="2016-07-31">
+              2016-07-31
             </time>
           </span>
 
@@ -278,30 +279,19 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Column 2 introduce three problems: <em>(missing) item search</em>, <em>vector rotation</em> and <em>anagrams finding</em> and the techniques to solve them. It discusses the effectiveness of sorting/binary searching, finding signature for the items and more importantly, finding the right primitives to solve the problem.</p>
-<h2 id="Problem-1-Item-searching"><a href="#Problem-1-Item-searching" class="headerlink" title="Problem 1: Item searching"></a>Problem 1: Item searching</h2><p><em>Description:</em> Given a sequential file that contains $N$ 32-bit integers in random order, find an integer that are not in the file.</p>
-<p>Note the 32-bit define the max range of the data ($2^{32}$). With enough memory we can use the bitmap introduced in the first column to find the missing integer. However, we can’t do it if the memory constrain was only few hundreds byte. In this case, the efficient solution is first sort the integers, then using binary search to looking for the missing item (see column 4 for the implementation of binary search).</p>
-<h2 id="Problem-2-Vector-rotation"><a href="#Problem-2-Vector-rotation" class="headerlink" title="Problem 2: Vector rotation"></a>Problem 2: Vector rotation</h2><p><em>Description:</em> Rotate a one-dimensional vector x of n elements b i positions. For instance, the vector abcdefg is rotated to defghabc.</p>
-<ul>
-<li><p><strong>Idea 1</strong>: The simplest way is to copy the first $i$ elements to a temporal array. Then move remaining $n-i$ elements left $i$ positions. Finally copy the $i$ elements back at the end of the $n-i$ elements. <strong>Problem:</strong> space-expensive as it requires $i$ extra location</p>
-</li>
-<li><p><strong>Idea 2</strong>: We can also move x[0] to a temp position, then move x[i] to x[0], x[2i] to x[i], etc. Then we repeat the process again with x[1] until all elements are moved. <strong>Problem:</strong> still time consuming since we have to move all n elements.</p>
-</li>
-<li><p><strong>Aha moment</strong>: Denote first $i$ elements as $a$, the remaining elements as $b$, then the vector $x$ could be rewrote as $ab$. Rotating $x$ left by $i$ position is like swap $ab$ to $ba$. We can do it with following three steps (comment gives an example with n = 7, i = 4).</p>
-<pre><code>reverse(0, i-1) // dcbaefg
-reverse(i, n)   // dcbagfe
-reverse(0, n)   // efgabcd
-</code></pre><p>where <code>reverse(i, j)</code> simply reverse the x[i, j]. The idea is to first get $a^r$, then $b^r$, so $ba$ can be obatained with $(a^rb^r)^r$</p>
-</li>
-</ul>
-<h2 id="Problem-3-Anagrams-searching"><a href="#Problem-3-Anagrams-searching" class="headerlink" title="Problem 3: Anagrams searching"></a>Problem 3: Anagrams searching</h2><p><em>Description:</em> Given a dictionary of English words, find all sets of anagrams. For instance, “pots”, “stops” and “tops” are all anagrams.</p>
-<p>The first step is to find signature of each word by sorting alphabets in the word so that all anagrams have the same signature (in above example, the signature is “aopst”). Then we could sort all words. After that all words with the same signature will be “squashed” together. Following figure illustrate how the algorithm works.</p>
-<p><img src="/content/images/2016/7/anagrams_pp_c2.png" alt="anagrams"></p>
-<h2 id="Takeway"><a href="#Takeway" class="headerlink" title="Takeway"></a>Takeway</h2><ol>
-<li><p>Column 1 precisely defining the problem from understanding what the user really want to do and the constrain. This column deal with the following step: find the right primitives to solve the problem.</p>
-</li>
-<li><p>Do not rush coding with your first thought, sit back and wait for an insight first.</p>
-</li>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce ways to write code carefully and verify its correctness based on an example of binary search problem.</p>
+<h2 id="Binary-search"><a href="#Binary-search" class="headerlink" title="Binary search"></a>Binary search</h2><p><em>Problem definition:</em> Determine whether a sorted array <em>x[0..n-1]</em> contains element <em>t</em>.</p>
+<p><em>Solution:</em> This is a classical problem that can be solved using binary search. The idea is to check the middle element of array x[m], if t&lt;x[m] then t must be on the left side of x[m], otherwise right side. So we can recursively search for t with smaller range, until we find t or return none.</p>
+<p><em>Code:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure></p>
+<h2 id="Program-Verification"><a href="#Program-Verification" class="headerlink" title="Program Verification"></a>Program Verification</h2><p>While looks simple, it is very easy to make mistakes in above code. Now let us walk through it by verify each step the code behaves exactly as we thought.</p>
+<p>We search for t by shrinking a range [lo, hi] that contains t. Initially lo = 0, hi = n-1, so t must lies between [lo, hi] if it exists.</p>
+<p>Now let us come into the loop. If lo &gt; hi, then there is no element between [lo, hi], thus we can return -1. Otherwise we check middle element x[mid]. If t &lt; x[mid], then t must lies between [0, m), so we can search in the new range [lo, mid-1]. If t &gt; x[mid], then we can search in the range [mid+1, hi]. If t = x[mid], then we have found the it and can return the position.</p>
+<p>Now one iteration is finished and there are only three possibilities: (1) t does not exist, return -1; (2) found t, return position; (3) t not found, search in the new range (with smaller size) where t must lies in if it present.</p>
+<p>From the above analysis we can see that in each loop iteration is established (it must falls in the range between [lo, hi]), each iteration preserve the truth and the desired results is true, therefore we are confident that above code can give us right output.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Verify correctness of loop: <strong>Initialization</strong> (loop invariant is well established), <strong>Preservation</strong> (truth is preserved during iteration) and <strong>Termination</strong> (desired result is obtained when terminates)</li>
+<li>Verify correctness of function: <em>precondition</em>: state mush be true before function called. <em>postcondition:</em> what function guarantee on termination.</li>
+<li>Resist the stupid idea to “just change it until it works”, make sure to understand the code at all time.</li>
 </ol>
 
       
@@ -334,17 +324,13 @@ reverse(0, n)   // efgabcd
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/programmingpearls/column1/" rel="next" title="Cracking the Oyster (column 1)">
-                <i class="fa fa-chevron-left"></i> Cracking the Oyster (column 1)
+              <a href="/2016/07/30/programmingpearls/column3/" rel="next" title="Data structure programs (column 3)">
+                <i class="fa fa-chevron-left"></i> Data structure programs (column 3)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/30/programmingpearls/column3/" rel="prev" title="Data structure programs (column 3)">
-                Data structure programs (column 3) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,7 +437,7 @@ reverse(0, n)   // efgabcd
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Item-searching"><span class="nav-number">2.</span> <span class="nav-text">Problem 1: Item searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Vector-rotation"><span class="nav-number">3.</span> <span class="nav-text">Problem 2: Vector rotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Anagrams-searching"><span class="nav-number">4.</span> <span class="nav-text">Problem 3: Anagrams searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeway"><span class="nav-number">5.</span> <span class="nav-text">Takeway</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-search"><span class="nav-number">2.</span> <span class="nav-text">Binary search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Verification"><span class="nav-number">3.</span> <span class="nav-text">Program Verification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
             
           </div>
         </section>

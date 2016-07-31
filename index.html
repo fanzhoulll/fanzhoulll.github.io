@@ -235,6 +235,113 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/31/programmingpearls/column4/" itemprop="url">
+                  Writing correct program (column 4)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-31T08:09:00+08:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce ways to write code carefully and verify its correctness based on an example of binary search problem.</p>
+<h2 id="Binary-search"><a href="#Binary-search" class="headerlink" title="Binary search"></a>Binary search</h2><p><em>Problem definition:</em> Determine whether a sorted array <em>x[0..n-1]</em> contains element <em>t</em>.</p>
+<p><em>Solution:</em> This is a classical problem that can be solved using binary search. The idea is to check the middle element of array x[m], if t&lt;x[m] then t must be on the left side of x[m], otherwise right side. So we can recursively search for t with smaller range, until we find t or return none.</p>
+<p><em>Code:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure></p>
+<h2 id="Program-Verification"><a href="#Program-Verification" class="headerlink" title="Program Verification"></a>Program Verification</h2><p>While looks simple, it is very easy to make mistakes in above code. Now let us walk through it by verify each step the code behaves exactly as we thought.</p>
+<p>We search for t by shrinking a range [lo, hi] that contains t. Initially lo = 0, hi = n-1, so t must lies between [lo, hi] if it exists.</p>
+<p>Now let us come into the loop. If lo &gt; hi, then there is no element between [lo, hi], thus we can return -1. Otherwise we check middle element x[mid]. If t &lt; x[mid], then t must lies between [0, m), so we can search in the new range [lo, mid-1]. If t &gt; x[mid], then we can search in the range [mid+1, hi]. If t = x[mid], then we have found the it and can return the position.</p>
+<p>Now one iteration is finished and there are only three possibilities: (1) t does not exist, return -1; (2) found t, return position; (3) t not found, search in the new range (with smaller size) where t must lies in if it present.</p>
+<p>From the above analysis we can see that in each loop iteration is established (it must falls in the range between [lo, hi]), each iteration preserve the truth and the desired results is true, therefore we are confident that above code can give us right output.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Verify correctness of loop: <strong>Initialization</strong> (loop invariant is well established), <strong>Preservation</strong> (truth is preserved during iteration) and <strong>Termination</strong> (desired result is obtained when terminates)</li>
+<li>Verify correctness of function: <em>precondition</em>: state mush be true before function called. <em>postcondition:</em> what function guarantee on termination.</li>
+<li>Resist the stupid idea to “just change it until it works”, make sure to understand the code at all time.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/30/programmingpearls/column3/" itemprop="url">
                   Data structure programs (column 3)
                 </a>
@@ -706,7 +813,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
