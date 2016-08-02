@@ -235,6 +235,165 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/02/programmingpearls/column6/" itemprop="url">
+                  Perspective of performance
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T19:18:20+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/programmingpearls/column6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/programmingpearls/column6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body simulation problem.</p>
+<h2 id="n-body-problem"><a href="#n-body-problem" class="headerlink" title="n-body problem"></a>n-body problem</h2><p>The <em>n-body problem</em> simulate motions of <em>n</em> objects in three-dimensional space, given their masses, positions, velocities and etc.<br>Appel designed an efficient program that reduce the run-time from 1 year to 1 day ($n=10000$). The following table summarize modification on different design levels and corresponding speed up.</p>
+<table>
+<thead>
+<tr>
+<th>Design Levels</th>
+<th style="text-align:right">Speedup factor</th>
+<th style="text-align:center">Modification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithms and Data Structures</td>
+<td style="text-align:right">12</td>
+<td style="text-align:center">Binary tree reduces O($n^2$) to O($nlog(n)$)</td>
+</tr>
+<tr>
+<td>Algorithm Tuning</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Larger time steps</td>
+</tr>
+<tr>
+<td>Data Structure Reorganization</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Produce clusters well-suited to tree algorithm</td>
+</tr>
+<tr>
+<td>Code Tuning 1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Using single precision floating point</td>
+</tr>
+<tr>
+<td>Code Tuning 2</td>
+<td style="text-align:right">2.5</td>
+<td style="text-align:center">Recode critical function in assembly</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Use a floating point accelerator</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align:right">400</td>
+</tr>
+</tbody>
+</table>
+<p>Note the speedup was not free. The simple algorithm uses a few dozens of code while the fast program required 1200 lines.</p>
+<h2 id="Design-levels"><a href="#Design-levels" class="headerlink" title="Design levels"></a>Design levels</h2><p>A computer system is designed at levels ranging from high-level software structure down to the hardware. Specifically:</p>
+<p><em>Problem Definition:</em> We have seen the importance of defining problem precisely in column 1.</p>
+<p><em>System structure:</em>  A designer should do a “back-of-the-envelope” (see Column 7) estimate to make sure the performance is in the right ballpark.</p>
+<p><em>Algorithms and Data Structures:</em> Needless to say.</p>
+<p><em>Code tuning:</em> Do not worth trying it in most cases.</p>
+<p><em>System Software:</em> Most likely do not have to worry about it neither.</p>
+<p><em>Hardware:</em> Faster hardware can increase performance.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Focus on the design level that might bring the largest speedup first (especially data structure/algorithm).</li>
+<li>Work at many levels if a big speedup is required.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/02/pythontips/forloop/" itemprop="url">
                   For loop in python
                 </a>
@@ -1069,7 +1228,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1079,7 +1238,7 @@ reverse(0, n)   // efgabcd
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

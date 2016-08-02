@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Programming Pearls," />
+  <meta name="keywords" content="programming pearls," />
 
 
 
@@ -84,18 +84,19 @@
 
 
 
-<meta name="description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
+<meta name="description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body simulation problem.
+n-body pro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AHA! Algorithms (column 2)">
-<meta property="og:url" content="http://yoursite.com/2016/07/28/programmingpearls/column2/index.html">
+<meta property="og:title" content="Perspective of performance">
+<meta property="og:url" content="http://yoursite.com/2016/08/02/programmingpearls/column6/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
-<meta property="og:image" content="http://yoursite.com/content/images/2016/7/anagrams_pp_c2.png">
-<meta property="og:updated_time" content="2016-07-28T02:37:37.000Z">
+<meta property="og:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body simulation problem.
+n-body pro">
+<meta property="og:updated_time" content="2016-08-02T12:05:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AHA! Algorithms (column 2)">
-<meta name="twitter:description" content="IntroductionColumn 2 introduce three problems: (missing) item search, vector rotation and anagrams finding and the techniques to solve them. It discusses the effectiveness of sorting/binary searching,">
-<meta name="twitter:image" content="http://yoursite.com/content/images/2016/7/anagrams_pp_c2.png">
+<meta name="twitter:title" content="Perspective of performance">
+<meta name="twitter:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body simulation problem.
+n-body pro">
 
 
 
@@ -116,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/28/programmingpearls/column2/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/02/programmingpearls/column6/"/>
 
-  <title> AHA! Algorithms (column 2) | Fan Zhou </title>
+  <title> Perspective of performance | Fan Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -238,7 +239,7 @@
             
             
               
-                AHA! Algorithms (column 2)
+                Perspective of performance
               
             
           </h1>
@@ -250,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-28T08:21:09+08:00" content="2016-07-28">
-              2016-07-28
+            <time itemprop="dateCreated" datetime="2016-08-02T19:18:20+08:00" content="2016-08-02">
+              2016-08-02
             </time>
           </span>
 
@@ -261,8 +262,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/28/programmingpearls/column2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/28/programmingpearls/column2/" itemprop="commentsCount"></span>
+                <a href="/2016/08/02/programmingpearls/column6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/programmingpearls/column6/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -285,30 +286,64 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Column 2 introduce three problems: <em>(missing) item search</em>, <em>vector rotation</em> and <em>anagrams finding</em> and the techniques to solve them. It discusses the effectiveness of sorting/binary searching, finding signature for the items and more importantly, finding the right primitives to solve the problem.</p>
-<h2 id="Problem-1-Item-searching"><a href="#Problem-1-Item-searching" class="headerlink" title="Problem 1: Item searching"></a>Problem 1: Item searching</h2><p><em>Description:</em> Given a sequential file that contains $N$ 32-bit integers in random order, find an integer that are not in the file.</p>
-<p>Note the 32-bit define the max range of the data ($2^{32}$). With enough memory we can use the bitmap introduced in the first column to find the missing integer. However, we can’t do it if the memory constrain was only few hundreds byte. In this case, the efficient solution is first sort the integers, then using binary search to looking for the missing item (see column 4 for the implementation of binary search).</p>
-<h2 id="Problem-2-Vector-rotation"><a href="#Problem-2-Vector-rotation" class="headerlink" title="Problem 2: Vector rotation"></a>Problem 2: Vector rotation</h2><p><em>Description:</em> Rotate a one-dimensional vector x of n elements b i positions. For instance, the vector abcdefg is rotated to defghabc.</p>
-<ul>
-<li><p><strong>Idea 1</strong>: The simplest way is to copy the first $i$ elements to a temporal array. Then move remaining $n-i$ elements left $i$ positions. Finally copy the $i$ elements back at the end of the $n-i$ elements. <strong>Problem:</strong> space-expensive as it requires $i$ extra location</p>
-</li>
-<li><p><strong>Idea 2</strong>: We can also move x[0] to a temp position, then move x[i] to x[0], x[2i] to x[i], etc. Then we repeat the process again with x[1] until all elements are moved. <strong>Problem:</strong> still time consuming since we have to move all n elements.</p>
-</li>
-<li><p><strong>Aha moment</strong>: Denote first $i$ elements as $a$, the remaining elements as $b$, then the vector $x$ could be rewrote as $ab$. Rotating $x$ left by $i$ position is like swap $ab$ to $ba$. We can do it with following three steps (comment gives an example with n = 7, i = 4).</p>
-<pre><code>reverse(0, i-1) // dcbaefg
-reverse(i, n)   // dcbagfe
-reverse(0, n)   // efgabcd
-</code></pre><p>where <code>reverse(i, j)</code> simply reverse the x[i, j]. The idea is to first get $a^r$, then $b^r$, so $ba$ can be obatained with $(a^rb^r)^r$</p>
-</li>
-</ul>
-<h2 id="Problem-3-Anagrams-searching"><a href="#Problem-3-Anagrams-searching" class="headerlink" title="Problem 3: Anagrams searching"></a>Problem 3: Anagrams searching</h2><p><em>Description:</em> Given a dictionary of English words, find all sets of anagrams. For instance, “pots”, “stops” and “tops” are all anagrams.</p>
-<p>The first step is to find signature of each word by sorting alphabets in the word so that all anagrams have the same signature (in above example, the signature is “aopst”). Then we could sort all words. After that all words with the same signature will be “squashed” together. Following figure illustrate how the algorithm works.</p>
-<p><img src="/content/images/2016/7/anagrams_pp_c2.png" alt="anagrams"></p>
-<h2 id="Takeway"><a href="#Takeway" class="headerlink" title="Takeway"></a>Takeway</h2><ol>
-<li><p>Column 1 precisely defining the problem from understanding what the user really want to do and the constrain. This column deal with the following step: find the right primitives to solve the problem.</p>
-</li>
-<li><p>Do not rush coding with your first thought, sit back and wait for an insight first.</p>
-</li>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body simulation problem.</p>
+<h2 id="n-body-problem"><a href="#n-body-problem" class="headerlink" title="n-body problem"></a>n-body problem</h2><p>The <em>n-body problem</em> simulate motions of <em>n</em> objects in three-dimensional space, given their masses, positions, velocities and etc.<br>Appel designed an efficient program that reduce the run-time from 1 year to 1 day ($n=10000$). The following table summarize modification on different design levels and corresponding speed up.</p>
+<table>
+<thead>
+<tr>
+<th>Design Levels</th>
+<th style="text-align:right">Speedup factor</th>
+<th style="text-align:center">Modification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithms and Data Structures</td>
+<td style="text-align:right">12</td>
+<td style="text-align:center">Binary tree reduces O($n^2$) to O($nlog(n)$)</td>
+</tr>
+<tr>
+<td>Algorithm Tuning</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Larger time steps</td>
+</tr>
+<tr>
+<td>Data Structure Reorganization</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Produce clusters well-suited to tree algorithm</td>
+</tr>
+<tr>
+<td>Code Tuning 1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Using single precision floating point</td>
+</tr>
+<tr>
+<td>Code Tuning 2</td>
+<td style="text-align:right">2.5</td>
+<td style="text-align:center">Recode critical function in assembly</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td style="text-align:right">2</td>
+<td style="text-align:center">Use a floating point accelerator</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align:right">400</td>
+</tr>
+</tbody>
+</table>
+<p>Note the speedup was not free. The simple algorithm uses a few dozens of code while the fast program required 1200 lines.</p>
+<h2 id="Design-levels"><a href="#Design-levels" class="headerlink" title="Design levels"></a>Design levels</h2><p>A computer system is designed at levels ranging from high-level software structure down to the hardware. Specifically:</p>
+<p><em>Problem Definition:</em> We have seen the importance of defining problem precisely in column 1.</p>
+<p><em>System structure:</em>  A designer should do a “back-of-the-envelope” (see Column 7) estimate to make sure the performance is in the right ballpark.</p>
+<p><em>Algorithms and Data Structures:</em> Needless to say.</p>
+<p><em>Code tuning:</em> Do not worth trying it in most cases.</p>
+<p><em>System Software:</em> Most likely do not have to worry about it neither.</p>
+<p><em>Hardware:</em> Faster hardware can increase performance.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Focus on the design level that might bring the largest speedup first (especially data structure/algorithm).</li>
+<li>Work at many levels if a big speedup is required.</li>
 </ol>
 
       
@@ -332,7 +367,7 @@ reverse(0, n)   // efgabcd
       
         <div class="post-tags">
           
-            <a href="/tags/Programming-Pearls/" rel="tag">#Programming Pearls</a>
+            <a href="/tags/programming-pearls/" rel="tag">#programming pearls</a>
           
         </div>
       
@@ -341,17 +376,13 @@ reverse(0, n)   // efgabcd
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/programmingpearls/column1/" rel="next" title="Cracking the Oyster (column 1)">
-                <i class="fa fa-chevron-left"></i> Cracking the Oyster (column 1)
+              <a href="/2016/08/02/pythontips/forloop/" rel="next" title="For loop in python">
+                <i class="fa fa-chevron-left"></i> For loop in python
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/30/programmingpearls/column3/" rel="prev" title="Data structure programs (column 3)">
-                Data structure programs (column 3) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,7 +496,7 @@ reverse(0, n)   // efgabcd
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1-Item-searching"><span class="nav-number">2.</span> <span class="nav-text">Problem 1: Item searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-2-Vector-rotation"><span class="nav-number">3.</span> <span class="nav-text">Problem 2: Vector rotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-3-Anagrams-searching"><span class="nav-number">4.</span> <span class="nav-text">Problem 3: Anagrams searching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeway"><span class="nav-number">5.</span> <span class="nav-text">Takeway</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n-body-problem"><span class="nav-number">2.</span> <span class="nav-text">n-body problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-levels"><span class="nav-number">3.</span> <span class="nav-text">Design levels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
             
           </div>
         </section>
@@ -585,9 +616,9 @@ reverse(0, n)   // efgabcd
 
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoulll';
-      var disqus_identifier = '2016/07/28/programmingpearls/column2/';
-      var disqus_title = "AHA! Algorithms (column 2)";
-      var disqus_url = 'http://yoursite.com/2016/07/28/programmingpearls/column2/';
+      var disqus_identifier = '2016/08/02/programmingpearls/column6/';
+      var disqus_title = "Perspective of performance";
+      var disqus_url = 'http://yoursite.com/2016/08/02/programmingpearls/column6/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
