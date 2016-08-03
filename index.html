@@ -235,6 +235,106 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/03/programmingpearls/column7/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T21:23:47+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/programmingpearls/column7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/03/programmingpearls/column7/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/02/programmingpearls/column6/" itemprop="url">
                   Perspective of performance (column 6)
                 </a>
@@ -450,9 +550,8 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// n is array size</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i=i/<span class="number">2</span>)</div><div class="line">  <span class="comment">// do stuff</span></div></pre></td></tr></table></figure>
 <p>This looks quite concise and elegant. However, I found that in Python we can only use <code>while</code> loop to do the same thing:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">i = n</div><div class="line"><span class="keyword">while</span> (i &gt; <span class="number">0</span>):</div><div class="line">  <span class="comment"># do stuff</span></div><div class="line">  i = i/<span class="number">2</span></div></pre></td></tr></table></figure>
-<p>This involves two additional lines. While this is not a big issue, I was curious whether it is possible to achieve the same function in python with one line. The only way I found is using <a href="https://www.python.org/dev/peps/pep-0289/" target="_blank" rel="external">Generator expression</a>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (x/<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> reversed(xrange(<span class="number">0</span>, n, <span class="number">2</span>))):</div><div class="line">  <span class="comment"># do stuff</span></div></pre></td></tr></table></figure>
-<p>This significantly sacrifice the readability. Maybe there is a better way to do this ?</p>
+<p>This involves two additional lines. After consulting people on a tech forum, I realized that the reason that python does not support <code>for</code> loop as in other language was that python regard <code>for</code> as a way to iterate over every element in a list. So if really need the one line <code>for loop</code>, we could define a iterator as followings：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut_in_half_until_zero</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">yield</span> n  <span class="comment"># Iterator</span></div><div class="line">        n = n // <span class="number">2</span></div><div class="line"> </div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cut_in_half_until_zero(<span class="number">100</span>):</div><div class="line">    print(i)  <span class="comment"># 100, 50, 25, 12, 6, 3, 1</span></div></pre></td></tr></table></figure>
 
           
         
@@ -1229,7 +1328,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
