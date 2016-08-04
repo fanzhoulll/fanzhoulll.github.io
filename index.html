@@ -235,6 +235,106 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/04/programmingpearls/column8/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T18:23:59+08:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/programmingpearls/column8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/04/programmingpearls/column8/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/04/beautyofprogramming/1_5/" itemprop="url">
                   Find missing elements
                 </a>
@@ -348,7 +448,7 @@
               
                 
                 <a class="post-title-link" href="/2016/08/03/programmingpearls/column7/" itemprop="url">
-                  Untitled
+                  The Back of the envelop (column 7)
                 </a>
               
             
@@ -398,7 +498,26 @@
       
         
           
-            
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>“Back of the envelop” is a powerful tool to quickly estimate the value of parameter. This column introduce basic principles to perform this kind of estimation.</p>
+<h2 id="Basic-skills"><a href="#Basic-skills" class="headerlink" title="Basic skills"></a>Basic skills</h2><p>Let us start with an example: how to estimate the flows out of Mississippi River every year ?</p>
+<p>We can consider this problem as following: the river was about 1 mile wide, 20 feet deep, and the rate of flow was 5 miles an hour (or a 120 miles a day), that gives:</p>
+<pre><code>1 mile * 1/250 mile * 120 miles/day = 1/2 mile^3/day
+</code></pre><p>Here comes the basic idea of “back of envelop” calculation: ignoring the complex variable, focusing on the key parameters, come up with a simple mathematical equation and calculate the value according to some common knowledge (1 mile wide is a reasonable guess, 20 meters clearly is not).</p>
+<p>Here are some basic rules we can adopt in estimation.</p>
+<h3 id="Dimension-check"><a href="#Dimension-check" class="headerlink" title="Dimension check"></a>Dimension check</h3><p>If not sure whether the estimation is accurate or not, we should first check the dimension. In above example, multiplying</p>
+<pre><code>mile * mile * mile/day = mile^3/day
+</code></pre><p>So the result has the right form.</p>
+<h3 id="Rule-of-72"><a href="#Rule-of-72" class="headerlink" title="Rule of 72"></a>Rule of 72</h3><p>Assuming a variable is increasing by <em>r</em> percent per year, after <em>y</em> years how many does the variable increases ? The rule of 72 tells us that if <code>r*y=72</code>, then the variable will roughly double. For example, say you save $1000 in the back. The interest was 6% per year, then after 12 years gives $2012.</p>
+<p>Another example: a problem takes 10 seconds to solve a problem of size $n=40$, increase $n$ by one increase the run time by 12 percent. How long does the program take when $n=160$ ?</p>
+<p>Rule of 72 tell us run time doubles when n increase 6. So it double 20 times after n increase to 160. Double 20 times is about $10^6$ increase ($2^{20} \approx 10^6$). So the problem takes $10^7$ seconds to solve when $n=160$.</p>
+<p>How long exactly is $10^7$ seconds ? To estimate that we introduce another handy rule:</p>
+<pre><code>Pi seconds is a nanocentury.
+</code></pre><p>So $\pi$ second is about $10^{-9}$ seconds. $10^7$ seconds is like 1 year/$\pi$ which is almost 4 month.</p>
+<h3 id="Little’s-Law"><a href="#Little’s-Law" class="headerlink" title="Little’s Law"></a>Little’s Law</h3><p>Little law says that the average number of things in the system is the product of the average rate at which things leave the system and the average time each one spends in the system.</p>
+<p>While looks complex, this rule is actually surprisingly simple in use. For example you are waiting in line outside of a club, how long do you have to wait to get in that club ? You can estimate that the club holds 60 people, averagely everyone spend 3 hour in it, so approximately 20 people leave that club per hour. Assuming 20 people are in front of you, then you can estimate you have to wait one hour to get in.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>As Einstein says:</p>
+<pre><code>Everything should be made as simple as possible, but not simpler.
+</code></pre>
           
         
       
@@ -1290,118 +1409,13 @@ reverse(0, n)   // efgabcd
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/24/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T21:26:38+08:00" content="2016-07-24">
-              2016-07-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/24/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1440,7 +1454,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

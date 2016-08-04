@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Blog, NexT" />
+  <meta name="keywords" content="programming pearls," />
 
 
 
@@ -84,13 +84,19 @@
 
 
 
+<meta name="description" content="Introduction“Back of the envelop” is a powerful tool to quickly estimate the value of parameter. This column introduce basic principles to perform this kind of estimation.
+Basic skillsLet us start wit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fan Zhou">
+<meta property="og:title" content="The Back of the envelop (column 7)">
 <meta property="og:url" content="http://yoursite.com/2016/08/03/programmingpearls/column7/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:updated_time" content="2016-08-03T13:23:47.000Z">
+<meta property="og:description" content="Introduction“Back of the envelop” is a powerful tool to quickly estimate the value of parameter. This column introduce basic principles to perform this kind of estimation.
+Basic skillsLet us start wit">
+<meta property="og:updated_time" content="2016-08-04T11:35:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fan Zhou">
+<meta name="twitter:title" content="The Back of the envelop (column 7)">
+<meta name="twitter:description" content="Introduction“Back of the envelop” is a powerful tool to quickly estimate the value of parameter. This column introduce basic principles to perform this kind of estimation.
+Basic skillsLet us start wit">
 
 
 
@@ -113,7 +119,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/08/03/programmingpearls/column7/"/>
 
-  <title>  | Fan Zhou </title>
+  <title> The Back of the envelop (column 7) | Fan Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -233,7 +239,7 @@
             
             
               
-                
+                The Back of the envelop (column 7)
               
             
           </h1>
@@ -280,7 +286,26 @@
       
 
       
-        
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>“Back of the envelop” is a powerful tool to quickly estimate the value of parameter. This column introduce basic principles to perform this kind of estimation.</p>
+<h2 id="Basic-skills"><a href="#Basic-skills" class="headerlink" title="Basic skills"></a>Basic skills</h2><p>Let us start with an example: how to estimate the flows out of Mississippi River every year ?</p>
+<p>We can consider this problem as following: the river was about 1 mile wide, 20 feet deep, and the rate of flow was 5 miles an hour (or a 120 miles a day), that gives:</p>
+<pre><code>1 mile * 1/250 mile * 120 miles/day = 1/2 mile^3/day
+</code></pre><p>Here comes the basic idea of “back of envelop” calculation: ignoring the complex variable, focusing on the key parameters, come up with a simple mathematical equation and calculate the value according to some common knowledge (1 mile wide is a reasonable guess, 20 meters clearly is not).</p>
+<p>Here are some basic rules we can adopt in estimation.</p>
+<h3 id="Dimension-check"><a href="#Dimension-check" class="headerlink" title="Dimension check"></a>Dimension check</h3><p>If not sure whether the estimation is accurate or not, we should first check the dimension. In above example, multiplying</p>
+<pre><code>mile * mile * mile/day = mile^3/day
+</code></pre><p>So the result has the right form.</p>
+<h3 id="Rule-of-72"><a href="#Rule-of-72" class="headerlink" title="Rule of 72"></a>Rule of 72</h3><p>Assuming a variable is increasing by <em>r</em> percent per year, after <em>y</em> years how many does the variable increases ? The rule of 72 tells us that if <code>r*y=72</code>, then the variable will roughly double. For example, say you save $1000 in the back. The interest was 6% per year, then after 12 years gives $2012.</p>
+<p>Another example: a problem takes 10 seconds to solve a problem of size $n=40$, increase $n$ by one increase the run time by 12 percent. How long does the program take when $n=160$ ?</p>
+<p>Rule of 72 tell us run time doubles when n increase 6. So it double 20 times after n increase to 160. Double 20 times is about $10^6$ increase ($2^{20} \approx 10^6$). So the problem takes $10^7$ seconds to solve when $n=160$.</p>
+<p>How long exactly is $10^7$ seconds ? To estimate that we introduce another handy rule:</p>
+<pre><code>Pi seconds is a nanocentury.
+</code></pre><p>So $\pi$ second is about $10^{-9}$ seconds. $10^7$ seconds is like 1 year/$\pi$ which is almost 4 month.</p>
+<h3 id="Little’s-Law"><a href="#Little’s-Law" class="headerlink" title="Little’s Law"></a>Little’s Law</h3><p>Little law says that the average number of things in the system is the product of the average rate at which things leave the system and the average time each one spends in the system.</p>
+<p>While looks complex, this rule is actually surprisingly simple in use. For example you are waiting in line outside of a club, how long do you have to wait to get in that club ? You can estimate that the club holds 60 people, averagely everyone spend 3 hour in it, so approximately 20 people leave that club per hour. Assuming 20 people are in front of you, then you can estimate you have to wait one hour to get in.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>As Einstein says:</p>
+<pre><code>Everything should be made as simple as possible, but not simpler.
+</code></pre>
       
     </div>
 
@@ -299,6 +324,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/programming-pearls/" rel="tag">#programming pearls</a>
+          
+        </div>
       
 
       
@@ -390,7 +421,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -429,7 +460,7 @@
               
             
             
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-skills"><span class="nav-number">2.</span> <span class="nav-text">Basic skills</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dimension-check"><span class="nav-number">2.1.</span> <span class="nav-text">Dimension check</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rule-of-72"><span class="nav-number">2.2.</span> <span class="nav-text">Rule of 72</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Little’s-Law"><span class="nav-number">2.3.</span> <span class="nav-text">Little’s Law</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">3.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
             
           </div>
         </section>
@@ -550,7 +581,7 @@
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoulll';
       var disqus_identifier = '2016/08/03/programmingpearls/column7/';
-      var disqus_title = "";
+      var disqus_title = "The Back of the envelop (column 7)";
       var disqus_url = 'http://yoursite.com/2016/08/03/programmingpearls/column7/';
 
       function run_disqus_script(disqus_script){
