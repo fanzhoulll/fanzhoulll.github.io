@@ -248,6 +248,156 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/05/programmingpearls/column8/" itemprop="url">
+                  Algorithm design techniques
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-05T19:40:03+08:00" content="2016-08-05">
+              2016-08-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/05/programmingpearls/column8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/05/programmingpearls/column8/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces four solutions to solve a small problem. The slowest algorithm takes 15 days when problem size $n = 100000$, the last optimized algorithm only takes 5 milliseconds. The emphasize was the basic ideas and techniques to design algorithms.</p>
+<h2 id="Problem-and-Solutions"><a href="#Problem-and-Solutions" class="headerlink" title="Problem and Solutions"></a>Problem and Solutions</h2><p><em>Problem definition:</em> Given a vector <em>x</em> of <em>n</em> floating-point numbers; return the maximum sum found in any contiguous sub-vector of that input.</p>
+<h3 id="Solution-1-Brute-force"><a href="#Solution-1-Brute-force" class="headerlink" title="Solution 1: Brute force"></a>Solution 1: Brute force</h3><p>The simplest idea is to iterate over all possible sub-vector, and return the one with maximum sum.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">maxsofar = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">  <span class="keyword">for</span> (j=i; j&lt;n; j++)</div><div class="line">  &#123;</div><div class="line">     sum = <span class="number">0</span></div><div class="line">     <span class="keyword">for</span> (k = i; k&lt;j; k++)</div><div class="line">     &#123;</div><div class="line">       <span class="comment">// sum is the sum of x[i..j]</span></div><div class="line">       sum += x[i]</div><div class="line">       maxsofar = max(maxsofar, sum)</div><div class="line">     &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>Time complexity is O($n^3$). In other words, it sucks.</p>
+<h3 id="Solution-2-Optimized-brute-force"><a href="#Solution-2-Optimized-brute-force" class="headerlink" title="Solution 2: Optimized brute force"></a>Solution 2: Optimized brute force</h3><p>A clear way to optimize it is as followings:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">maxsofar = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">  sum = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> (j=i; j&lt;n; j++)</div><div class="line">  &#123;</div><div class="line">    <span class="comment">// sum is the sum of x[i..j]</span></div><div class="line">    sum += x[j]</div><div class="line">    maxsofar = max(maxsofar, sum)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The time complexity of this algorithm is O($n^2$). Not so good, but better than Solution 1.</p>
+<p>Another quadratic algorithm use the fact that sum of <em>x[i..j]</em> is equal with <em>x[0..j]</em> - <em>x[0..i]</em>. We can process the vector first to get the cumulative sum until $i^{th}$ element and then use above equation to get <em>x[i..j]</em>.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">maxsofar = <span class="number">0</span></div><div class="line">cumarr[<span class="number">0</span>] = x[<span class="number">0</span>]</div><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">  cumarr[i] = cumarr[i<span class="number">-1</span>] + x[i]</div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">  <span class="keyword">for</span> (j=i; j&lt;n; j++)</div><div class="line">  &#123;</div><div class="line">    <span class="comment">// sum is the sum of x[i..j]</span></div><div class="line">    sum = cumarr[j] - cumarr[i]</div><div class="line">    maxsofar = max(maxsofar, sum)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>This algorithm also takes O($n^2$). Meanwhile, its space complexity is O(n). So it actually is even worse then the above one.</p>
+<h3 id="Solution-3-Divide-and-conquer"><a href="#Solution-3-Divide-and-conquer" class="headerlink" title="Solution 3: Divide and conquer"></a>Solution 3: Divide and conquer</h3><p>The idea of divide-and-conquer can be generalized as followings:</p>
+<p><em>To solve a problem of size n, recursively solve two subproblems of size n/2, and combine solutions to yield a solution to the complete problem</em>.</p>
+<p>So how to use this idea to solve solve our problem ?</p>
+<p>We can divide the original vector into sub-vector $a$ and $b$. The maximum contiguous sub-vector must be entirely either in a ($m_a$) or b ($m_b$), or <em>across</em> a and b ($m_c$).</p>
+<p>A key question is how to calculate $m_c$. Note $m_c$ can only extend from the split boundary. So $m_c$ is the sum of max sub-vector on left side and that on right side.  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">maxsum</span><span class="params">(l, u)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="comment">// Return condition: 0 or 1 element</span></div><div class="line">  <span class="keyword">if</span> (l &gt; u)</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  <span class="keyword">if</span> (l == u)</div><div class="line">    <span class="keyword">return</span> max(<span class="number">0</span>, x[l])</div><div class="line">  m = (l + u)/<span class="number">2</span></div><div class="line">  lsum = lmax = rsum = rmax = <span class="number">0</span></div><div class="line">  <span class="keyword">for</span> (i=m; i&gt;l; i--)</div><div class="line">  &#123;</div><div class="line">    lsum += x[i]</div><div class="line">    lmax = max(lmax, lsum)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">for</span> (i=m+<span class="number">1</span>; i&lt;u; i++)</div><div class="line">  &#123;</div><div class="line">    rsum += x[i]</div><div class="line">    rmax = max(rmax, rsum)</div><div class="line">  &#125;</div><div class="line">  ma = maxsum(l, m)</div><div class="line">  mb = maxsum(m+<span class="number">1</span>, u)</div><div class="line">  mc = lmax + rmax</div><div class="line">  <span class="keyword">return</span> max(ma, mb, mc)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>This reduces the time-complexity to O($nlog(n)$).</p>
+<h3 id="Solution-4-Scanning"><a href="#Solution-4-Scanning" class="headerlink" title="Solution 4: Scanning"></a>Solution 4: Scanning</h3><p>Over quite a long period of time, people think solution 3 is the optimal, until Jay Kadane sketch the following scanning algorithm that can solve the problem in in O($n$).</p>
+<p>The principle of scanning algorithm can be generalized as followings:</p>
+<p><em>Suppose you have solved the problem for x[0..i-1]; extend that solution to include x[i]</em></p>
+<p>So the idea to solve the problem is: the max contiguous sub-vector is either in x[0..i-1] (store in <em>maxsofar</em>), or ends at position <em>i</em> (store in <em>maxending</em>). This results in following algorithm:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">maxsofar = <span class="number">0</span></div><div class="line">maxending = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">  maxending = max（maxending + x[i]， maxending)</div><div class="line">  maxsofar = max(maxsofar, maxending)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>What an elegant algorithm ! It is surprising that Jay Kadane came up with the idea in less than one minute. This sharp insight can only come from years of hard training in algorithm thinking.</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Save states to avoid re-computation. We can see the importance of doing so again and again in algorithm design (e.g, the elevator scheduling algorithm).</li>
+<li>Preprocess information about data structure. What if we can store data in binary tree or a heap ? Is that gonna shorten the searching time?</li>
+<li>Divide-and-conquer: a powerful tool to reduce the size of problem.</li>
+<li>Scanning algorithm：seems particularly useful if input data structure is array.</li>
+<li>Lower-bound: what is the lower bound of the complexity? How to reach that lower bound ?</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/04/beautyofprogramming/1_5/" itemprop="url">
                   Find missing elements
                 </a>
@@ -1493,118 +1643,13 @@ reverse(0, n)   // efgabcd
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/24/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T21:26:38+08:00" content="2016-07-24">
-              2016-07-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/24/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1643,7 +1688,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
