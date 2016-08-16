@@ -248,6 +248,148 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/16/programmingpearls/column10/" itemprop="url">
+                  Squeezing Space (column 10)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T20:33:51+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/programmingpearls/column10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/16/programmingpearls/column10/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces some techniques to reduce space usage of program.</p>
+<h2 id="Saving-a-sparse-matrix"><a href="#Saving-a-sparse-matrix" class="headerlink" title="Saving a sparse matrix"></a>Saving a sparse matrix</h2><p>First let us start with an example. We need to store a sparse table with 2000 integers (range from 0 to 1999) distributed in a 200*200 matrix. So half of the matrix is empty. Part of the matrix is shown as followings:</p>
+<p><img src="/content/images/2016/8/sparsematrix.png" alt="anagrams"></p>
+<p>We can store the matrix using array. Assuming each integer needs 4 byte, total space usage is 4<em>200</em>200 = 160 kbyte.</p>
+<p>We can easily shrink the space by representing the sparse matrix with an column array and linked lists to represent elements in the given column. The data structure is shown as followings:</p>
+<p><img src="/content/images/2016/8/pointerrepresent.png" alt="anagrams"></p>
+<p>Note each element consist of a pointer (4 byte) and two integers (4 byte each). So 2000 elements takes 12*2000 = 24000 byte. The 200 column header pointers take 800 byte. Total space is 24.8 byte. Even though is a little slower to look up an element compared with the array representation (averagely visit 10 nodes to find a element), it is totally worth it because of the over 6X space reduction.</p>
+<p>Another way to represent the sparse matrix is using three arrays: a column array with 201 elements and two parallel arrays with 2000 elements (one save row index and one save integers).</p>
+<p><img src="/content/images/2016/8/arrayrepresnet.png" alt="anagrams"></p>
+<p>It is easy to compute the total space usage for this version is only 8.42 kbyte (with each integer saved with 2 byte). If we want to further reduce space, we can use singe byte to save row index since it is always below 200. This reduce space to 6.4 kbyte.</p>
+<p>Finally, if the index time is not important, we can simply sequentially search through the array of integers by singe-byte <em>column</em> and <em>row</em> fields. This achieves ultimate space of 4 kbyte.</p>
+<h2 id="Summary-of-Techniques-for-Data-Space"><a href="#Summary-of-Techniques-for-Data-Space" class="headerlink" title="Summary of Techniques for Data Space"></a>Summary of Techniques for Data Space</h2><p><em>Recompute, Don’t Store</em>: Let us say if we need to save a huge tax table, maybe it is better to compute the tax value instead of storing it.</p>
+<p><em>Sparse Data Structures</em>: We have already seen this in above example.</p>
+<p><em>Data compression</em>: For example, we can encode two digits <em>a</em> and <em>b</em> using one digit <em>c</em>, where <em>c = 10*a + b</em>. Then we decode a and b by taking:</p>
+<pre><code>a = c / 10
+b = c % 10
+</code></pre><p><em>Sharing storage</em>: We need to save two matrixes (<em>a</em> and <em>b</em>) that represent distances between points. Brian Kernighan using array-overlay to reduce two matrixes into one.</p>
+<p><img src="/content/images/2016/8/arrayoverlay.png" alt="anagrams"></p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Before trying to optimize space, think what benefit does it brought ?</li>
+<li>Data can have hot space, as we have seen in the sparse structure.</li>
+<li>Some tradeoffs between space and time is necessary, but we should carefully study the alternatives before make such decision. Sometimes a better solution can yield improvement in all aspects.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/13/beautyofprogramming/1_16/" itemprop="url">
                   24 Game
                 </a>
@@ -323,7 +465,7 @@
 <p>we can use following recursive steps to solve the problem:</p>
 <ol>
 <li>Choose two numbers <em>a</em>, <em>b</em>, compute <em>a+b</em>.</li>
-<li>Put <code>a+b</code> back to the <em>A</em> and delete <em>a</em>,<em>b</em>, get a new array <em>A’ = [a+b, c, d]</em>.</li>
+<li>Put <em>a+b</em> back to the <em>A</em> and delete <em>a</em>,<em>b</em>, get a new array <em>A’ = [a+b, c, d]</em>.</li>
 <li>Back to Step 1 with <em>A’</em></li>
 </ol>
 <p>Of course, in step 1 we should also compute <em>a-b, b-a, a*b, a/b (b!=0), b/a (a!=0)</em> to get the result.</p>
@@ -1482,140 +1624,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/30/programmingpearls/column3/" itemprop="url">
-                  Data structure programs (column 3)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-30T07:46:47+08:00" content="2016-07-30">
-              2016-07-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes of Programming Pearls</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/30/programmingpearls/column3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/30/programmingpearls/column3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.</p>
-<h2 id="Several-examples"><a href="#Several-examples" class="headerlink" title="Several examples"></a>Several examples</h2><h3 id="Represent-survey"><a href="#Represent-survey" class="headerlink" title="Represent survey"></a>Represent survey</h3><p>Consider how to code following questionnaire filled by students of a specific college.</p>
-<p><img src="/content/images/2016/7/questionnaire.png" alt="questionnaire"></p>
-<p>Actual questionnaire is much more complicated. The recommended way to store number is using array. For example, the array could be laid out according to output structure along the three dimensions of <em>campus</em>, <em>ethnic group</em> and all the <em>columns</em> in questionnaire.</p>
-<h3 id="Form-Letter-Programming"><a href="#Form-Letter-Programming" class="headerlink" title="Form-Letter Programming"></a>Form-Letter Programming</h3><p>Think how to print following information:</p>
-<p><img src="/content/images/2016/7/info.png" alt="info"></p>
-<p>A simple but tedious way was to use a sequence of print, while a better approach involves writing a form letter generator relies on a form letter schema like:</p>
-<p><img src="/content/images/2016/7/lettergenerator.png" alt="lettergenerator"></p>
-<p>Then we could print the scheme as it is if the letter is not <code>$</code>, otherwise we retrieve the corresponding field in the database as specified by the number following <code>$</code> and print it.</p>
-<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p><em>Error message:</em> Instead of scatter hundreds of error messages throughout the code, it is better to access them using a single function.</p>
-<p><em>Word analysis:</em> Consider the application of removing the endings (‘-ing’, ‘-s’, ‘-ed’,etc). Using table to save the common ending can shorten the code length greatly.</p>
-<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><ol>
-<li>A long stretch of similar code is often best expressed by array.</li>
-<li>Let the data structure the program: before writing code, good programmers thoroughly understand the input, the output and intermediate data structures around which programs are built.</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1661,7 +1669,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

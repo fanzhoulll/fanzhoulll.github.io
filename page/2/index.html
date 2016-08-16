@@ -248,6 +248,140 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/30/programmingpearls/column3/" itemprop="url">
+                  Data structure programs (column 3)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-30T07:46:47+08:00" content="2016-07-30">
+              2016-07-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/30/programmingpearls/column3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/30/programmingpearls/column3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.</p>
+<h2 id="Several-examples"><a href="#Several-examples" class="headerlink" title="Several examples"></a>Several examples</h2><h3 id="Represent-survey"><a href="#Represent-survey" class="headerlink" title="Represent survey"></a>Represent survey</h3><p>Consider how to code following questionnaire filled by students of a specific college.</p>
+<p><img src="/content/images/2016/7/questionnaire.png" alt="questionnaire"></p>
+<p>Actual questionnaire is much more complicated. The recommended way to store number is using array. For example, the array could be laid out according to output structure along the three dimensions of <em>campus</em>, <em>ethnic group</em> and all the <em>columns</em> in questionnaire.</p>
+<h3 id="Form-Letter-Programming"><a href="#Form-Letter-Programming" class="headerlink" title="Form-Letter Programming"></a>Form-Letter Programming</h3><p>Think how to print following information:</p>
+<p><img src="/content/images/2016/7/info.png" alt="info"></p>
+<p>A simple but tedious way was to use a sequence of print, while a better approach involves writing a form letter generator relies on a form letter schema like:</p>
+<p><img src="/content/images/2016/7/lettergenerator.png" alt="lettergenerator"></p>
+<p>Then we could print the scheme as it is if the letter is not <code>$</code>, otherwise we retrieve the corresponding field in the database as specified by the number following <code>$</code> and print it.</p>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p><em>Error message:</em> Instead of scatter hundreds of error messages throughout the code, it is better to access them using a single function.</p>
+<p><em>Word analysis:</em> Consider the application of removing the endings (‘-ing’, ‘-s’, ‘-ed’,etc). Using table to save the common ending can shorten the code length greatly.</p>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><ol>
+<li>A long stretch of similar code is often best expressed by array.</li>
+<li>Let the data structure the program: before writing code, good programmers thoroughly understand the input, the output and intermediate data structures around which programs are built.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/28/programmingpearls/column2/" itemprop="url">
                   AHA! Algorithms (column 2)
                 </a>
@@ -674,7 +808,7 @@ reverse(0, n)   // efgabcd
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
