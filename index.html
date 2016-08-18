@@ -248,6 +248,160 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/18/programmingpearls/column11/" itemprop="url">
+                  Sorting (column 11)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-18T20:04:54+08:00" content="2016-08-18">
+              2016-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/18/programmingpearls/column11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/18/programmingpearls/column11/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive version of quick sort. Then we discuss some problems of this naive algorithm and introduce some fix techniques.</p>
+<h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is to using <em>divide and conquer</em>. To sort an array <em>x</em> we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array <em>x</em> around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on left and right of <em>t</em>. Finally, the entire array is sorted.</p>
+<p>With this idea it is quick to write following false code:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">      <span class="comment"># at most one element, do nothing</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    m = partition(l, u)</div><div class="line">    qsort(l, m<span class="number">-1</span>)</div><div class="line">    qsort(m+<span class="number">1</span>, u)</div></pre></td></tr></table></figure>
+<p>Next problem is how to partition array around <em>t</em>. In first naive implementation, we simply choose the first element of array as pivotal <em>t</em>. Then we scan the array from left to right, and use variable <em>i</em> and <em>m</em> to maintain the following invariant:</p>
+<p><img src="/content/images/2016/8/partition1.png" alt="partition1"></p>
+<p>When the loop terminate we should have:</p>
+<p><img src="/content/images/2016/8/partition2.png" alt="partition2"></p>
+<p>Finally we swap x[l] and x[m] to get the partitioned array:</p>
+<p><img src="/content/images/2016/8/partition3.png" alt="partition3"></p>
+<p>The code for this single-side partition is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">partion1</span><span class="params">(x, l, u)</span>:</span></div><div class="line">    m = l</div><div class="line">    i = l+<span class="number">1</span></div><div class="line">    <span class="keyword">while</span> i&lt;=u:</div><div class="line">        <span class="string">'''</span></div><div class="line">        Invariant:  arr[l+1 ...m] &lt;  x[l]</div><div class="line">                    arr[m+1..i-1] &gt;= x[l]</div><div class="line">        '''</div><div class="line">        <span class="keyword">if</span> x[i] &lt; x[l]:</div><div class="line">            m += <span class="number">1</span></div><div class="line">            swap(x, m, i)</div><div class="line">        i += <span class="number">1</span></div><div class="line">    swap(x, l, m)</div><div class="line">    <span class="keyword">return</span> m</div></pre></td></tr></table></figure>
+<p>The best-case time complexity of quick sorting is O(<em>nlog(n)</em>). To understand why, assuming each partition divide array into two sub-arrays with equal size. The the total run time is:</p>
+<pre><code>T(n) = 2*T(n/2) + O(n)
+</code></pre><p>where <em>n</em> is the input array size. So we have <em>T(n) = O(nlog(n))</em>. However, this only holds when averagely speaking, the two sub-arrays after partition have equal sizes. Otherwise, the total run time would be much longer, as we will see in following section.</p>
+<h2 id="Better-quick-sort"><a href="#Better-quick-sort" class="headerlink" title="Better quick sort"></a>Better quick sort</h2><h3 id="Two-sided-partition"><a href="#Two-sided-partition" class="headerlink" title="Two-sided partition"></a>Two-sided partition</h3><p>When the input array is not random, the above algorithm could lead to much worse performance. For example, assuming the input array has equal elements. Then each element would shift zero position with the above single-side partition. Therefore, the <em>n-1</em> partition use O(n) to remove one element, yield a total run time of O($n^2$).</p>
+<p>The solution to this problem is the two-sided partition, with the following invariant:</p>
+<p><img src="/content/images/2016/8/partition4.png" alt="partition4"></p>
+<p>With the double-sided partition, the equal element yield the best time performance: each partition just equally divide the array. The code is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">partion2</span><span class="params">(arr, l, u)</span>:</span></div><div class="line">    t = arr[l]</div><div class="line">    i = l + <span class="number">1</span></div><div class="line">    j = u</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">True</span>):</div><div class="line">        <span class="keyword">while</span>((i&lt;=u) <span class="keyword">and</span> (arr[i] &lt; t)):</div><div class="line">            i += <span class="number">1</span></div><div class="line">        <span class="keyword">while</span>(arr[j] &gt; t):</div><div class="line">            j -= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> i &gt; j:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        swap(arr, i, j)</div><div class="line">    swap(arr, l, j)</div><div class="line">    <span class="keyword">return</span> j</div></pre></td></tr></table></figure>
+<h3 id="Choose-right-element-when-partition"><a href="#Choose-right-element-when-partition" class="headerlink" title="Choose right element when partition"></a>Choose right element when partition</h3><p>So far, we simply choose the first element in partition. This would result in O($n^2$) run time if the array is already sorted. To avoid this situation we can choose a random partitioning element by swapping <code>x[l]</code> with a random entry in <code>x[l..u]</code>:</p>
+<pre><code>swap(x[l], x[randint(l, u)])
+</code></pre><p>A simpler technique is to shuffle the array before quick sort.</p>
+<h3 id="Quicker-sorting-for-small-array"><a href="#Quicker-sorting-for-small-array" class="headerlink" title="Quicker sorting for small array"></a>Quicker sorting for small array</h3><p>When the array has small size, quick sort can be slower then insert sort. In this case, we can use a <code>cutoff</code> parameter to disable quick sort:</p>
+<pre><code>if len(x) &lt; cutoff
+  return
+</code></pre><p>of course, after that we should call insert sort to sort the array.</p>
+<pre><code>qsort(0, n-1)
+insert_sort()
+</code></pre><h3 id="Put-it-together"><a href="#Put-it-together" class="headerlink" title="Put it together"></a>Put it together</h3><p>Combing all these elements together, the code of better quick sort is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">cutoff = <span class="number">5</span> <span class="comment"># Just an example</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(x, l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="comment"># Introduced above</span></div><div class="line">    m = partion2(x, l, u)</div><div class="line">    qsort(x, l, m<span class="number">-1</span>)</div><div class="line">    qsort(x, m+<span class="number">1</span>, u)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr)</span>:</span></div><div class="line">    n = len(arr)</div><div class="line">    <span class="keyword">if</span> n &lt; cutoff:</div><div class="line">        <span class="keyword">return</span></div><div class="line">    shuffle(arr)</div><div class="line">    qsort(arr, <span class="number">0</span>, n<span class="number">-1</span>)</div><div class="line">    <span class="comment"># Implementation of insert sort is omitted here</span></div><div class="line">    insert_sort(arr)</div></pre></td></tr></table></figure>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Quick sort is anther wonderful example of divide-and-conquer. However, to make it works we should carefully consider all possible inputs.</li>
+<li>Do not bother implement your own sorting algorithm. In most case the system sorting is fast enough.  </li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/16/programmingpearls/column10/" itemprop="url">
                   Squeezing Space (column 10)
                 </a>
@@ -1491,139 +1645,6 @@ b = c % 10
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/31/programmingpearls/column4/" itemprop="url">
-                  Writing correct program (column 4)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T08:09:00+08:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes of Programming Pearls</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/31/programmingpearls/column4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/31/programmingpearls/column4/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce techniques to verify program correctness using an example of binary search problem.</p>
-<h2 id="Binary-search"><a href="#Binary-search" class="headerlink" title="Binary search"></a>Binary search</h2><p><em>Problem definition:</em> Determine whether a sorted array <em>x[0..n-1]</em> contains element <em>t</em>.</p>
-<p><em>Solution:</em> This is a classical problem that can be solved using binary search. The idea is to check the middle element of array <em>x[mid]</em>. If <em>t&lt;x[mid]</em> then <em>t</em> must be on the left side of <em>x[mid]</em>, otherwise right side. So we can recursively search for <em>t</em> in smaller range, until we finally find <em>t</em> (or return -1 if it does not exist).</p>
-<p><em>Code:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure></p>
-<h2 id="Program-Verification"><a href="#Program-Verification" class="headerlink" title="Program Verification"></a>Program Verification</h2><p>Now we walk through it by verify each step in the code behaves exactly as we thought.</p>
-<p>We search for $t$ by shrinking a range <code>[lo, hi]</code> that contains <em>t</em>. Initially <code>lo = 0</code>, <code>hi = n-1</code>, so <em>t</em> must lies between <code>[lo, hi]</code> if it exists.</p>
-<p>Next we come into the loop. If <em>lo &gt; hi</em>, then there is no element between <code>[lo, hi]</code>. Thus <em>t</em> does not present in the array and we can return -1. Otherwise we check middle element <code>x[mid]</code>. If <code>t &lt; x[mid]</code>, then <em>t</em> must lies between <code>[lo, mid-1]</code>. If <code>t &gt; x[mid]</code>, then we can search in the range <code>[mid+1, hi]</code>. If <code>t = x[mid]</code>, then we have found  <em>t</em> and can return the position.</p>
-<p>After one iteration is finished, there are only three results: (1) <em>t</em> does not exist, return -1; (2) found <em>t</em>, return position; (3) <em>t</em> not found, search in the new range (with smaller size) where <em>t</em> should in.</p>
-<p>From above analysis we see that: (1) in each loop iteration is established；(2) each iteration preserve the truth (<em>t</em> must falls in the range between <code>[lo, hi]</code>); (3) the desired results is true (-1 if not exist, otherwise return position). Therefore we are confident that above code can output right answer.</p>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
-<li>Verify correctness of loop: <em>Initialization</em> (loop invariant is well established), <em>Preservation</em> (truth is preserved during iteration) and <em>Termination</em> (desired result is obtained when terminates)</li>
-<li>Verify correctness of function: <em>precondition</em>: state mush be true before function called. <em>postcondition:</em> what function guarantee on termination.</li>
-<li>Resist the stupid idea to “just change it until it works”, make sure to understand the code at all time.</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1669,7 +1690,7 @@ b = c % 10
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
