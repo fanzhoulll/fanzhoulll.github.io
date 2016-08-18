@@ -84,20 +84,20 @@
 
 
 
-<meta name="description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive version of quick sort. Then we discuss some problems of this naive">
+<meta name="description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sorting (column 11)">
 <meta property="og:url" content="http://yoursite.com/2016/08/18/programmingpearls/column11/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive version of quick sort. Then we discuss some problems of this naive">
+<meta property="og:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition1.png">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition2.png">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition3.png">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition4.png">
-<meta property="og:updated_time" content="2016-08-18T16:32:46.000Z">
+<meta property="og:updated_time" content="2016-08-18T16:39:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sorting (column 11)">
-<meta name="twitter:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive version of quick sort. Then we discuss some problems of this naive">
+<meta name="twitter:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
 <meta name="twitter:image" content="http://yoursite.com/content/images/2016/8/partition1.png">
 
 
@@ -317,22 +317,22 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive version of quick sort. Then we discuss some problems of this naive algorithm and introduce some fix techniques.</p>
-<h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is to using <em>divide and conquer</em>. To sort an array <em>x</em> we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array <em>x</em> around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on left and right of <em>t</em>. Finally, the entire array is sorted.</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version algorithm as well as some fix techniques.</p>
+<h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is <em>divide and conquer</em>. To sort an array we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on both sides of <em>t</em>. Finally, the entire array is sorted.</p>
 <p>With this idea it is quick to write following false code:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">      <span class="comment"># at most one element, do nothing</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    m = partition(l, u)</div><div class="line">    qsort(l, m<span class="number">-1</span>)</div><div class="line">    qsort(m+<span class="number">1</span>, u)</div></pre></td></tr></table></figure>
-<p>Next problem is how to partition array around <em>t</em>. In first naive implementation, we simply choose the first element of array as pivotal <em>t</em>. Then we scan the array from left to right, and use variable <em>i</em> and <em>m</em> to maintain the following invariant:</p>
+<p>Next problem is how to partition array around <em>t</em>. In naive implementation, we simply choose the first element of array as pivotal <em>t</em>. Then we scan the array from left to right, and use variable <em>i</em> and <em>m</em> to maintain the following invariant:</p>
 <p><img src="/content/images/2016/8/partition1.png" alt="partition1"></p>
 <p>When the loop terminate we should have:</p>
 <p><img src="/content/images/2016/8/partition2.png" alt="partition2"></p>
-<p>Finally we swap x[l] and x[m] to get the partitioned array:</p>
+<p>Finally we swap <code>x[l]</code> and <code>x[m]</code> to get the partitioned array:</p>
 <p><img src="/content/images/2016/8/partition3.png" alt="partition3"></p>
 <p>The code for this single-side partition is:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">partion1</span><span class="params">(x, l, u)</span>:</span></div><div class="line">    m = l</div><div class="line">    i = l+<span class="number">1</span></div><div class="line">    <span class="keyword">while</span> i&lt;=u:</div><div class="line">        <span class="string">'''</span></div><div class="line">        Invariant:  arr[l+1 ...m] &lt;  x[l]</div><div class="line">                    arr[m+1..i-1] &gt;= x[l]</div><div class="line">        '''</div><div class="line">        <span class="keyword">if</span> x[i] &lt; x[l]:</div><div class="line">            m += <span class="number">1</span></div><div class="line">            swap(x, m, i)</div><div class="line">        i += <span class="number">1</span></div><div class="line">    swap(x, l, m)</div><div class="line">    <span class="keyword">return</span> m</div></pre></td></tr></table></figure>
 <p>The best-case time complexity of quick sorting is O(<em>nlog(n)</em>). To understand why, assuming each partition divide array into two sub-arrays with equal size. The the total run time is:</p>
 <pre><code>T(n) = 2*T(n/2) + O(n)
 </code></pre><p>where <em>n</em> is the input array size. So we have <em>T(n) = O(nlog(n))</em>. However, this only holds when averagely speaking, the two sub-arrays after partition have equal sizes. Otherwise, the total run time would be much longer, as we will see in following section.</p>
-<h2 id="Better-quick-sort"><a href="#Better-quick-sort" class="headerlink" title="Better quick sort"></a>Better quick sort</h2><h3 id="Two-sided-partition"><a href="#Two-sided-partition" class="headerlink" title="Two-sided partition"></a>Two-sided partition</h3><p>When the input array is not random, the above algorithm could lead to much worse performance. For example, assuming the input array has equal elements. Then each element would shift zero position with the above single-side partition. Therefore, the <em>n-1</em> partition use O(n) to remove one element, yield a total run time of O($n^2$).</p>
+<h2 id="Better-quick-sort"><a href="#Better-quick-sort" class="headerlink" title="Better quick sort"></a>Better quick sort</h2><h3 id="Two-sided-partition"><a href="#Two-sided-partition" class="headerlink" title="Two-sided partition"></a>Two-sided partition</h3><p>When the input array is not random, the above algorithm could lead to much worse performance. For example, assuming the input array has equal elements. Then each element would shift zero position with the above single-side partition. Therefore, the <em>n-1</em> partition use O(<em>n</em>) to remove one element, yield a total run time of O($n^2$).</p>
 <p>The solution to this problem is the two-sided partition, with the following invariant:</p>
 <p><img src="/content/images/2016/8/partition4.png" alt="partition4"></p>
 <p>With the double-sided partition, the equal element yield the best time performance: each partition just equally divide the array. The code is:</p>
@@ -343,7 +343,7 @@
 <h3 id="Quicker-sorting-for-small-array"><a href="#Quicker-sorting-for-small-array" class="headerlink" title="Quicker sorting for small array"></a>Quicker sorting for small array</h3><p>When the array has small size, quick sort can be slower then insert sort. In this case, we can use a <code>cutoff</code> parameter to disable quick sort:</p>
 <pre><code>if len(x) &lt; cutoff
   return
-</code></pre><p>of course, after that we should call insert sort to sort the array.</p>
+</code></pre><p>of course, after that we should call insert sort to sort the arry:</p>
 <pre><code>qsort(0, n-1)
 insert_sort()
 </code></pre><h3 id="Put-it-together"><a href="#Put-it-together" class="headerlink" title="Put it together"></a>Put it together</h3><p>Combing all these elements together, the code of better quick sort is:</p>
