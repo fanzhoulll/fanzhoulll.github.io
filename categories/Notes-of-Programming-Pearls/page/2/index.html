@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="Blog, NexT" />
 
 
 
@@ -84,22 +84,15 @@
 
 
 
-<meta name="description" content="Today I try to implement heap sort, and has to iterate over an array like following:
-123// n is array sizefor (int i = n; i &amp;gt; 0; i=i/2)  // do stuff
-This looks quite concise and elegant. However, I">
-<meta property="og:type" content="article">
-<meta property="og:title" content="For loop in python">
-<meta property="og:url" content="http://yoursite.com/2016/08/02/pythontips/forloop/index.html">
+<meta name="description" content="A lifelong learner&apos;s blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fan Zhou">
+<meta property="og:url" content="http://yoursite.com/categories/Notes-of-Programming-Pearls/page/2/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="Today I try to implement heap sort, and has to iterate over an array like following:
-123// n is array sizefor (int i = n; i &amp;gt; 0; i=i/2)  // do stuff
-This looks quite concise and elegant. However, I">
-<meta property="og:updated_time" content="2016-08-04T14:38:18.000Z">
+<meta property="og:description" content="A lifelong learner&apos;s blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="For loop in python">
-<meta name="twitter:description" content="Today I try to implement heap sort, and has to iterate over an array like following:
-123// n is array sizefor (int i = n; i &amp;gt; 0; i=i/2)  // do stuff
-This looks quite concise and elegant. However, I">
+<meta name="twitter:title" content="Fan Zhou">
+<meta name="twitter:description" content="A lifelong learner&apos;s blog">
 
 
 
@@ -120,9 +113,9 @@ This looks quite concise and elegant. However, I">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/02/pythontips/forloop/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/Notes-of-Programming-Pearls/page/2/"/>
 
-  <title> For loop in python | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Category: Notes of Programming Pearls | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -143,7 +136,7 @@ This looks quite concise and elegant. However, I">
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -231,157 +224,51 @@ This looks quite concise and elegant. However, I">
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                For loop in python
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T12:23:35+08:00" content="2016-08-02">
-              2016-08-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Programming-tricks/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming tricks</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/02/pythontips/forloop/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/pythontips/forloop/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>Today I try to implement heap sort, and has to iterate over an array like following:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// n is array size</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i=i/<span class="number">2</span>)</div><div class="line">  <span class="comment">// do stuff</span></div></pre></td></tr></table></figure>
-<p>This looks quite concise and elegant. However, I found that in Python we can only use <code>while</code> loop to do the same thing:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">i = n</div><div class="line"><span class="keyword">while</span> (i &gt; <span class="number">0</span>):</div><div class="line">  <span class="comment"># do stuff</span></div><div class="line">  i = i/<span class="number">2</span></div></pre></td></tr></table></figure>
-<p>This involves two additional lines. After consulting people on a tech forum, I realized that the reason that python does not support <code>for</code> loop as in other language was that python regard <code>for</code> as a way to iterate over every element in a list. So if really need the one line <code>for loop</code>, we could define a iterator as followings：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut_in_half_until_zero</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">yield</span> n  <span class="comment"># Iterator</span></div><div class="line">        n = n // <span class="number">2</span></div><div class="line"> </div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cut_in_half_until_zero(<span class="number">100</span>):</div><div class="line">    print(i)  <span class="comment"># 100, 50, 25, 12, 6, 3, 1</span></div></pre></td></tr></table></figure>
-
-      
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Notes of Programming Pearls
+        <small>Category</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/07/27/programmingpearls/column1/" itemprop="url">
+              
+                <span itemprop="name">Cracking the Oyster (column 1)</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-07-27T07:33:13+08:00"
+              content="2016-07-27" >
+          07-27
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/python/" rel="tag">#python</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/01/programmingpearls/column5/" rel="next" title="A small matter of programming (column 5)">
-                <i class="fa fa-chevron-left"></i> A small matter of programming (column 5)
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/02/programmingpearls/column6/" rel="prev" title="Perspective of performance (column 6)">
-                Perspective of performance (column 6) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/categories/Notes-of-Programming-Pearls/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/Notes-of-Programming-Pearls/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
 
 
           </div>
@@ -389,17 +276,6 @@ This looks quite concise and elegant. However, I">
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -419,17 +295,8 @@ This looks quite concise and elegant. However, I">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/content/images/avatar.jpg"
@@ -479,17 +346,6 @@ This looks quite concise and elegant. However, I">
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">This post does not have a Table of Contents</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -586,10 +442,6 @@ This looks quite concise and elegant. However, I">
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
@@ -606,9 +458,9 @@ This looks quite concise and elegant. However, I">
 
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoulll';
-      var disqus_identifier = '2016/08/02/pythontips/forloop/';
-      var disqus_title = "For loop in python";
-      var disqus_url = 'http://yoursite.com/2016/08/02/pythontips/forloop/';
+      var disqus_identifier = 'categories/Notes-of-Programming-Pearls/page/2/index.html';
+      var disqus_title = "";
+      var disqus_url = '';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -619,8 +471,6 @@ This looks quite concise and elegant. However, I">
       }
 
       run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
       
     </script>
   

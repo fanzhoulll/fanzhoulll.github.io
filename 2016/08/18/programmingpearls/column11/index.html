@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition2.png">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition3.png">
 <meta property="og:image" content="http://yoursite.com/content/images/2016/8/partition4.png">
-<meta property="og:updated_time" content="2016-08-18T16:39:44.000Z">
+<meta property="og:updated_time" content="2016-08-19T06:58:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sorting (column 11)">
 <meta name="twitter:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
@@ -319,7 +319,7 @@
       
         <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version algorithm as well as some fix techniques.</p>
 <h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is <em>divide and conquer</em>. To sort an array we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on both sides of <em>t</em>. Finally, the entire array is sorted.</p>
-<p>With this idea it is quick to write following false code:</p>
+<p>With this idea it is quick to write following pseudocode:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">      <span class="comment"># at most one element, do nothing</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    m = partition(l, u)</div><div class="line">    qsort(l, m<span class="number">-1</span>)</div><div class="line">    qsort(m+<span class="number">1</span>, u)</div></pre></td></tr></table></figure>
 <p>Next problem is how to partition array around <em>t</em>. In naive implementation, we simply choose the first element of array as pivotal <em>t</em>. Then we scan the array from left to right, and use variable <em>i</em> and <em>m</em> to maintain the following invariant:</p>
 <p><img src="/content/images/2016/8/partition1.png" alt="partition1"></p>
@@ -390,6 +390,10 @@ insert_sort()
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/19/programmingpearls/column12/" rel="prev" title="A Sample Problem (column 11)">
+                A Sample Problem (column 11) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -464,7 +468,7 @@ insert_sort()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

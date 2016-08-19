@@ -248,6 +248,143 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/19/programmingpearls/column12/" itemprop="url">
+                  A Sample Problem (column 11)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T14:12:15+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/19/programmingpearls/column12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/19/programmingpearls/column12/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces a tiny yet practical problem and two solutions.</p>
+<h2 id="Problem-and-first-solution"><a href="#Problem-and-first-solution" class="headerlink" title="Problem and first solution"></a>Problem and first solution</h2><p><em>Problem:</em> Given two numbers <em>m</em> and <em>n</em>, with <em>m&lt;n</em>, output sorted list of <em>m</em> random integers in the range <em>0..n-1</em> with no integers occurs more than once.</p>
+<p><em>Solution1:</em> My first reaction is generate a sequence list with <em>0..n-1</em>. Then we shuffle the array and sort the first <em>m</em> elements, which is the required output. The code is simple:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">genshuf</span><span class="params">(m, n)</span>:</span></div><div class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">    x[i] = i</div><div class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, m):</div><div class="line">    j = randint(i, n<span class="number">-1</span>)</div><div class="line">    swap(i, j)</div><div class="line">  sort(x[<span class="number">0</span>:m])</div><div class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, m):</div><div class="line">    <span class="keyword">print</span> i</div></pre></td></tr></table></figure>
+<p>It is easy to see the time complexity is O(n+mlog(m)) and the space complexity is O(n). Can you design a better algorithm?</p>
+<h2 id="A-Better-Solution"><a href="#A-Better-Solution" class="headerlink" title="A Better Solution"></a>A Better Solution</h2><p>Donald Knuth develop Algorithm S to solve this problem, reduce the time complexity to O(n) and space complexity to O(1). It is based on the observation that to choose a number from <em>n</em> candidates with probability <em>m/n</em> we can implement following statement:</p>
+<pre><code>if (bigrand() % n) &lt; m
+   choose number
+</code></pre><p>To choose <em>m</em> elements with equal probability $P=m/n$, we choose the first element with probability $P_1=m/n$, then choose the second element with $P_2=(m-1)/(n-1)$ if the first element is chosen, otherwise $P_2=m/(n-1)$. We continue doing so until get <em>m</em> elements. The code is even simpler:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">genKnuth</span><span class="params">(m, n)</span>:</span></div><div class="line">  i = <span class="number">0</span></div><div class="line">  <span class="keyword">while</span> i&lt;n:</div><div class="line">    <span class="comment"># Select m elements in rest n-i</span></div><div class="line">    <span class="keyword">if</span> (bigrand() % (n-i)) &lt; m:</div><div class="line">      <span class="keyword">print</span> i</div><div class="line">      m -= <span class="number">1</span></div><div class="line">    i += <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>It it easy to proof the correctness of the algorithm. Note it cannot select more than m elements because <code>bigrand() % (n-i) &gt;= 0</code>. It cannot select fewer because when <code>n-i = m</code> all remaining elements must be chosen (condition <code>bigrand() % (n-i) &lt; m</code> always holds).</p>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>From this problem we can extract four typical steps of problem solving.</p>
+<ol>
+<li><strong>Understand the problem.</strong> It is the first step towards solution. Trying to state the problem in a clean and crisp way.</li>
+<li><strong>Explore the design space.</strong> Do not jump to quickly to the first reaction of the possible solution. Use informal high-level language to help us describe design.</li>
+<li><strong>Implement one solution.</strong> Strive to implement the chosen design with most straightforward code.</li>
+<li><strong>Retrospect.</strong> There always remains something more to do to improve the design.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/18/programmingpearls/column11/" itemprop="url">
                   Sorting (column 11)
                 </a>
@@ -320,7 +457,7 @@
           
             <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version algorithm as well as some fix techniques.</p>
 <h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is <em>divide and conquer</em>. To sort an array we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on both sides of <em>t</em>. Finally, the entire array is sorted.</p>
-<p>With this idea it is quick to write following false code:</p>
+<p>With this idea it is quick to write following pseudocode:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">      <span class="comment"># at most one element, do nothing</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    m = partition(l, u)</div><div class="line">    qsort(l, m<span class="number">-1</span>)</div><div class="line">    qsort(m+<span class="number">1</span>, u)</div></pre></td></tr></table></figure>
 <p>Next problem is how to partition array around <em>t</em>. In naive implementation, we simply choose the first element of array as pivotal <em>t</em>. Then we scan the array from left to right, and use variable <em>i</em> and <em>m</em> to maintain the following invariant:</p>
 <p><img src="/content/images/2016/8/partition1.png" alt="partition1"></p>
@@ -1512,139 +1649,6 @@ b = c % 10
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/01/programmingpearls/column5/" itemprop="url">
-                  A small matter of programming (column 5)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-01T18:26:59+08:00" content="2016-08-01">
-              2016-08-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes of Programming Pearls</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/01/programmingpearls/column5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/01/programmingpearls/column5/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We have discussed how to define the right problem, choose algorithm and data structure. Also, we have used program verification to write elegant pseudocode. The last thing to do, is just a small matter of programming.</p>
-<p>This column introduce several important techniques of producing correct code for binary search. Here we focus on two of them: <strong>assertion</strong> and <strong>automatic testing</strong>.</p>
-<h2 id="The-art-of-assertion"><a href="#The-art-of-assertion" class="headerlink" title="The art of assertion"></a>The art of assertion</h2><p>We can use <code>assert</code> to state that we believe a logical expression is true. The statement of <code>assert(n&gt;=0)</code> will raise an error if <em>n</em> is negative, otherwise it do nothing. In binary search, we want to make sure that the (1) the input array is sorted; (2) every iteration the range of array decreases. So we can insert following <code>assert</code> statement:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    oldsize = size</div><div class="line">    size = hi - lo + <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">assert</span>(size &lt; oldsize) <span class="comment"># Making sure range decreases every iteration</span></div><div class="line">    <span class="keyword">assert</span>(sorted(arr))  <span class="comment"># Making sure arr is sorted</span></div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure>
-<h2 id="Automated-testing"><a href="#Automated-testing" class="headerlink" title="Automated testing"></a>Automated testing</h2><p>An ideal testing for binary search should cover empty array, common sizes (0,1,2), several powers of 2 and etc. Automated testing can save us from the dreadful boring manual testing.</p>
-<p>First we use following script to examine the case where all elements are distinct.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">autotest1</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Test distinct elements (plus one at end)</div><div class="line">    '''</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n+<span class="number">1</span>):</div><div class="line">        arr[i] = <span class="number">10</span>*i</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">        <span class="comment"># The input is different from above function</span></div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*i)     == i)</div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*i - <span class="number">5</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*n<span class="number">-5</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*n)   == <span class="number">-1</span>)</div></pre></td></tr></table></figure>
-<p>Next we examine an array of equal elements:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">autotest2</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Test equal elements</div><div class="line">    '''</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">        arr[i] = <span class="number">10</span></div><div class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">assert</span>(<span class="number">0</span> &lt;= bsearch(<span class="number">10</span>) &lt; n)</div><div class="line">    <span class="keyword">assert</span>(<span class="number">5</span>) == <span class="number">-1</span></div></pre></td></tr></table></figure>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
-<li>Sketch a hard function in a convenient high-level pseudocode, then translate it into implementation language.</li>
-<li>Assert played a key role in making sure the run-time behavior of code matches our understanding.</li>
-<li>Testing of function can be done much easily alone than in a large system.</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1690,7 +1694,7 @@ b = c % 10
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
