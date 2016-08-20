@@ -115,7 +115,7 @@
 
   <link rel="canonical" href="http://yoursite.com/archives/2016/08/page/2/"/>
 
-  <title> Archive | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -136,7 +136,9 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left  page-archive  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
+  
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -184,10 +186,10 @@
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-blog">
+          <a href="/blog" rel="section">
             
-            archives
+            blog
           </a>
         </li>
       
@@ -206,107 +208,272 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  
+  
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 17 posts in total. Keep on posting.
-    </span>
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
 
-      
-      
-      
-
-      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/02/pythontips/forloop/" itemprop="url">
+                  For loop in python
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T12:23:35+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Programming-tricks/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming tricks</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/pythontips/forloop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/pythontips/forloop/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/08/02/pythontips/forloop/" itemprop="url">
-              
-                <span itemprop="name">For loop in python</span>
-              
-            </a>
+          
+            <p>Today I try to implement heap sort, and has to iterate over an array like following:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// n is array size</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">0</span>; i=i/<span class="number">2</span>)</div><div class="line">  <span class="comment">// do stuff</span></div></pre></td></tr></table></figure>
+<p>This looks quite concise and elegant. However, I found that in Python we can only use <code>while</code> loop to do the same thing:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">i = n</div><div class="line"><span class="keyword">while</span> (i &gt; <span class="number">0</span>):</div><div class="line">  <span class="comment"># do stuff</span></div><div class="line">  i = i/<span class="number">2</span></div></pre></td></tr></table></figure>
+<p>This involves two additional lines. After consulting people on a tech forum, I realized that the reason that python does not support <code>for</code> loop as in other language was that python regard <code>for</code> as a way to iterate over every element in a list. So if really need the one line <code>for loop</code>, we could define a iterator as followings：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut_in_half_until_zero</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</div><div class="line">        <span class="keyword">yield</span> n  <span class="comment"># Iterator</span></div><div class="line">        n = n // <span class="number">2</span></div><div class="line"> </div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cut_in_half_until_zero(<span class="number">100</span>):</div><div class="line">    print(i)  <span class="comment"># 100, 50, 25, 12, 6, 3, 1</span></div></pre></td></tr></table></figure>
+
+          
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-02T12:23:35+08:00"
-              content="2016-08-02" >
-          08-02
-        </time>
-      </div>
+    <div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
 
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/08/01/programmingpearls/column5/" itemprop="url">
-              
-                <span itemprop="name">A small matter of programming (column 5)</span>
-              
-            </a>
         
-      </h1>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/01/programmingpearls/column5/" itemprop="url">
+                  A small matter of programming (column 5)
+                </a>
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-01T18:26:59+08:00"
-              content="2016-08-01" >
-          08-01
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T18:26:59+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
 
-    </header>
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/01/programmingpearls/column5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/01/programmingpearls/column5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>We have discussed how to define the right problem, choose algorithm and data structure. Also, we have used program verification to write elegant pseudocode. The last thing to do, is just a small matter of programming.</p>
+<p>This column introduce several important techniques of producing correct code for binary search. Here we focus on two of them: <strong>assertion</strong> and <strong>automatic testing</strong>.</p>
+<h2 id="The-art-of-assertion"><a href="#The-art-of-assertion" class="headerlink" title="The art of assertion"></a>The art of assertion</h2><p>We can use <code>assert</code> to state that we believe a logical expression is true. The statement of <code>assert(n&gt;=0)</code> will raise an error if <em>n</em> is negative, otherwise it do nothing. In binary search, we want to make sure that the (1) the input array is sorted; (2) every iteration the range of array decreases. So we can insert following <code>assert</code> statement:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    oldsize = size</div><div class="line">    size = hi - lo + <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">assert</span>(size &lt; oldsize) <span class="comment"># Making sure range decreases every iteration</span></div><div class="line">    <span class="keyword">assert</span>(sorted(arr))  <span class="comment"># Making sure arr is sorted</span></div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure>
+<h2 id="Automated-testing"><a href="#Automated-testing" class="headerlink" title="Automated testing"></a>Automated testing</h2><p>An ideal testing for binary search should cover empty array, common sizes (0,1,2), several powers of 2 and etc. Automated testing can save us from the dreadful boring manual testing.</p>
+<p>First we use following script to examine the case where all elements are distinct.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">autotest1</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Test distinct elements (plus one at end)</div><div class="line">    '''</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n+<span class="number">1</span>):</div><div class="line">        arr[i] = <span class="number">10</span>*i</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">        <span class="comment"># The input is different from above function</span></div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*i)     == i)</div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*i - <span class="number">5</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*n<span class="number">-5</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">assert</span>(bsearch(<span class="number">10</span>*n)   == <span class="number">-1</span>)</div></pre></td></tr></table></figure>
+<p>Next we examine an array of equal elements:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">autotest2</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Test equal elements</div><div class="line">    '''</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">        arr[i] = <span class="number">10</span></div><div class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">        <span class="keyword">assert</span>(bsearch(<span class="number">10</span>) == <span class="number">-1</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">assert</span>(<span class="number">0</span> &lt;= bsearch(<span class="number">10</span>) &lt; n)</div><div class="line">    <span class="keyword">assert</span>(<span class="number">5</span>) == <span class="number">-1</span></div></pre></td></tr></table></figure>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
+<li>Sketch a hard function in a convenient high-level pseudocode, then translate it into implementation language.</li>
+<li>Assert played a key role in making sure the run-time behavior of code matches our understanding.</li>
+<li>Testing of function can be done much easily alone than in a large system.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </article>
 
 
-
     
-
   </section>
 
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/archives/2016/08/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2016/08/">1</a><span class="page-number current">2</span>
   </nav>
-
 
 
 
@@ -345,7 +512,7 @@
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
+            <a href="/">
               <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">posts</span>
             </a>
@@ -482,12 +649,6 @@ Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
 
   
 
