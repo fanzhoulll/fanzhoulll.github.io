@@ -1,24 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
-    <title>
-      Sorting (column 11) | Fan Zhou 
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="Fan Zhou">
-    
-    
-
-    <meta name="description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Sorting (column 11) | Fan Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sorting (column 11) | Fan Zhou">
+<meta property="og:title" content="Sorting (column 11)">
 <meta property="og:url" content="http://fanzhoulll.github.io/2016/08/18/programmingpearls/column11/index.html">
 <meta property="og:site_name" content="Fan Zhou">
 <meta property="og:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
@@ -28,164 +17,37 @@
 <meta property="og:image" content="http://fanzhoulll.github.io/content/images/2016/8/partition4.png">
 <meta property="og:updated_time" content="2016-08-19T06:58:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sorting (column 11) | Fan Zhou">
+<meta name="twitter:title" content="Sorting (column 11)">
 <meta name="twitter:description" content="IntroductionThis column introduces how to write good quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version">
 <meta name="twitter:image" content="http://fanzhoulll.github.io/content/images/2016/8/partition1.png">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-<body>
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
-    
-
-<header class="panel-cover panel-cover--collapsed">
-
-
-  <div class="panel-main">
-
   
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
+    <link rel="alternate" href="/atom.xml" title="Fan Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" class="container">
+    <article id="post-programmingpearls/column11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
+  
+    <h1 class="article-title" itemprop="name">
+      Sorting (column 11)
+    </h1>
+  
 
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Fan Zhou</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
-
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay"></div>
-  </div>
-</header>
-
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
+      </header>
     
-    <h1 class="post-title">Sorting (column 11)</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2016-08-18" class="post-meta__date date">2016-08-18</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-            <font class="categories">
-            &#8226; 分类:
-            <a class="categories-link" href="/categories/Notes-of-Programming-Pearls/">Notes of Programming Pearls</a>
-            </font>
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/programming-pearls/">programming pearls</a>
-            </font>
-          
-
-      </span>
-    </div>
-    
-    
-
-  </header>
-
-  <section id="post-content" class="article-content post">
-    <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version algorithm as well as some fix techniques.</p>
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces how to write <em>good</em> quick sorting algorithm. We start with the basic idea of quick sort and a naive implementation. Then we discuss some problems of the first version algorithm as well as some fix techniques.</p>
 <h2 id="Basic-quick-sort"><a href="#Basic-quick-sort" class="headerlink" title="Basic quick sort"></a>Basic quick sort</h2><p>The basic idea of quick sort is <em>divide and conquer</em>. To sort an array we can divide it into two subarrays and recursively sort them. Specifically, we choose an pivotal <em>t</em> and <em>partition</em> the array around it by moving elements smaller than <em>t</em> to the left side of <em>t</em> and greater element to the right side. Then we recursively partition the subarrays on both sides of <em>t</em>. Finally, the entire array is sorted.</p>
 <p>With this idea it is quick to write following pseudocode:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">qsort</span><span class="params">(l, u)</span>:</span></div><div class="line">    <span class="keyword">if</span> l &gt;= u:</div><div class="line">      <span class="comment"># at most one element, do nothing</span></div><div class="line">      <span class="keyword">return</span></div><div class="line">    m = partition(l, u)</div><div class="line">    qsort(l, m<span class="number">-1</span>)</div><div class="line">    qsort(m+<span class="number">1</span>, u)</div></pre></td></tr></table></figure>
@@ -221,74 +83,118 @@ insert_sort()
 <li>Do not bother implement your own sorting algorithm. In most case the system sorting is fast enough.  </li>
 </ol>
 
-  </section>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2016/08/18/programmingpearls/column11/" class="article-date">
+  <time datetime="2016-08-18T12:04:54.000Z" itemprop="datePublished">2016-08-18</time>
+</a>
 
+        </li>
+        
+          <li>
+            <span class="label">Categoría:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Notes-of-Programming-Pearls/">Notes of Programming Pearls</a>
+  </div>
+
+
+          </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming-pearls/">programming pearls</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
   
-
-<section class="post-comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-      var disqus_shortname = 'fanzhoulll'; 
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2016/08/19/programmingpearls/column12/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          A Sample Problem (column 11)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/16/programmingpearls/column10/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Viejo</strong>
+      <div class="article-nav-title">Squeezing Space (column 10)</div>
+    </a>
+  
+</nav>
 
 
   
 </article>
 
 
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
-    
-</footer>
-        </div>
+  <section id="comments" class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
+  </section>
 
 
-    
-
-    <script src="/js/awesome-toc.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
+  </div>
+  
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
 
 
-    
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+      </div>
+    </footer>
+
+  
+  <script>
+   var disqus_shortname = 'fanzhoulll';
+   
+   var disqus_url = 'http://fanzhoulll.github.io/2016/08/18/programmingpearls/column11/';
+   
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+  </script>
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -306,6 +212,5 @@ insert_sort()
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
 </body>
 </html>

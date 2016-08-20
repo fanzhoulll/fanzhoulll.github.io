@@ -1,189 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
-    <title>
-      24 Game | Fan Zhou 
-    </title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="Fan Zhou">
-    
-    
-
-    <meta name="description" content="Problem: Design an algorithm, find solution for 24 game.
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>24 Game | Fan Zhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Problem: Design an algorithm, find solution for 24 game.
  Solution: Abstractly, what we need to do is to use +, -, *, /, (, ) to construct formulas with the a 4-number array A=[a, b, c, d], so that th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="24 Game | Fan Zhou">
+<meta property="og:title" content="24 Game">
 <meta property="og:url" content="http://fanzhoulll.github.io/2016/08/13/beautyofprogramming/1_16/index.html">
 <meta property="og:site_name" content="Fan Zhou">
 <meta property="og:description" content="Problem: Design an algorithm, find solution for 24 game.
  Solution: Abstractly, what we need to do is to use +, -, *, /, (, ) to construct formulas with the a 4-number array A=[a, b, c, d], so that th">
 <meta property="og:updated_time" content="2016-08-13T12:46:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="24 Game | Fan Zhou">
+<meta name="twitter:title" content="24 Game">
 <meta name="twitter:description" content="Problem: Design an algorithm, find solution for 24 game.
  Solution: Abstractly, what we need to do is to use +, -, *, /, (, ) to construct formulas with the a 4-number array A=[a, b, c, d], so that th">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/favicon.png">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-</head>
-<body>
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
-    
-
-<header class="panel-cover panel-cover--collapsed">
-
-
-  <div class="panel-main">
-
   
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
+    <link rel="alternate" href="/atom.xml" title="Fan Zhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" class="container">
+    <article id="post-beautyofprogramming/1_16" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
+  
+    <h1 class="article-title" itemprop="name">
+      24 Game
+    </h1>
+  
 
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Fan Zhou</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
-
-            </ul>
-          </nav>
-
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
-
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay"></div>
-  </div>
-</header>
-
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
+      </header>
     
-    <h1 class="post-title">24 Game</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2016-08-13" class="post-meta__date date">2016-08-13</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-            <font class="categories">
-            &#8226; 分类:
-            <a class="categories-link" href="/categories/The-Art-of-Algorithm/">The Art of Algorithm</a>
-            </font>
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/algorithm/">algorithm</a>
-            </font>
-          
-
-      </span>
-    </div>
-    
-    
-
-  </header>
-
-  <section id="post-content" class="article-content post">
-    <p><em>Problem:</em> Design an algorithm, find solution for <a href="https://en.wikipedia.org/wiki/24_Game" target="_blank" rel="external">24 game</a>.</p>
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p><em>Problem:</em> Design an algorithm, find solution for <a href="https://en.wikipedia.org/wiki/24_Game" target="_blank" rel="external">24 game</a>.</p>
 <p> <em>Solution:</em> Abstractly, what we need to do is to use <code>+, -, *, /, (, )</code> to construct formulas with the a 4-number array <em>A=[a, b, c, d]</em>, so that the result is 24. The simplest solution is brute force. We can try all different combinations of number sequence, arithmetic operators and brackets to find the solution.</p>
 <p>we can use following recursive steps to solve the problem:</p>
 <ol>
@@ -203,91 +65,117 @@ classes that you can use:
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">nums = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line">results = map(str, nums)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve24game</span><span class="params">(nums)</span>:</span></div><div class="line">    <span class="comment"># Recursive terminate condition: &lt;=1 element left</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">if</span> abs(nums[<span class="number">0</span>] - <span class="number">24</span>) &lt; <span class="number">0.0001</span>:</div><div class="line">            <span class="keyword">print</span> results[<span class="number">0</span>][<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line">        <span class="keyword">return</span></div><div class="line">    n = len(nums)</div><div class="line">    <span class="comment"># Iterate over every possible combination of i and j</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</div><div class="line">            a = nums[i]</div><div class="line">            b = nums[j]</div><div class="line">            res_a = results[i]</div><div class="line">            res_b = results[j]</div><div class="line">            <span class="comment"># Replace nums[i] with a+b</span></div><div class="line">            nums[i] = a+b</div><div class="line">            <span class="comment"># Replace nums[j] with last elem</span></div><div class="line">            nums[j] = nums[n<span class="number">-1</span>]</div><div class="line">            results[j] = results[n<span class="number">-1</span>]</div><div class="line">            <span class="comment"># Replace results[i] with results[i] + results[j]</span></div><div class="line">            results[i] = <span class="string">'('</span> + res_a + <span class="string">'+'</span> + res_b + <span class="string">')'</span></div><div class="line">            solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            nums[i] = a-b</div><div class="line">            results[i] = <span class="string">'('</span> + res_a + <span class="string">'-'</span> + res_b + <span class="string">')'</span></div><div class="line">            solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            nums[i] = b-a</div><div class="line">            results[i] = <span class="string">'('</span> + res_b + <span class="string">'-'</span> + res_a + <span class="string">')'</span></div><div class="line">            solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            results[i] = <span class="string">'('</span> + res_a + <span class="string">'*'</span> + res_b + <span class="string">')'</span></div><div class="line">            nums[i] = a*b</div><div class="line">            solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            <span class="keyword">if</span> a != <span class="number">0</span>:</div><div class="line">                results[i] = <span class="string">'('</span> + res_b + <span class="string">'/'</span> + res_a + <span class="string">')'</span></div><div class="line">                nums[i] = float(b)/a</div><div class="line">                solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            <span class="keyword">if</span> b != <span class="number">0</span>:</div><div class="line">                results[i] = <span class="string">'('</span> + res_a + <span class="string">'/'</span> + res_b + <span class="string">')'</span></div><div class="line">                nums[i] = float(a)/b</div><div class="line">                solve24game(nums[<span class="number">0</span>:(n<span class="number">-1</span>)])</div><div class="line">            <span class="comment"># Recover original array</span></div><div class="line">            nums[i] = a</div><div class="line">            nums[j] = b</div><div class="line">            results[i] = res_a</div><div class="line">            results[j] = res_b</div><div class="line"></div><div class="line"><span class="comment"># Test</span></div><div class="line">solve24game(nums)</div></pre></td></tr></table></figure>
 <p>The key takeaway from this problem is the writing of recursive program. Think carefully about the termination condition, how to reduce problem size in each iteration and how to restore the previous stage after all iterations are over.</p>
 
-  </section>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2016/08/13/beautyofprogramming/1_16/" class="article-date">
+  <time datetime="2016-08-13T08:25:14.000Z" itemprop="datePublished">2016-08-13</time>
+</a>
 
+        </li>
+        
+          <li>
+            <span class="label">Categoría:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/The-Art-of-Algorithm/">The Art of Algorithm</a>
+  </div>
+
+
+          </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
   
-
-<section class="post-comments">
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-      var disqus_shortname = 'fanzhoulll'; 
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
+    
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/2016/08/16/programmingpearls/column10/" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          Squeezing Space (column 10)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/09/beautyofprogramming/1_8/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Viejo</strong>
+      <div class="article-nav-title">Elevator scheduling</div>
+    </a>
+  
+</nav>
 
 
   
 </article>
 
 
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
-    
-</footer>
-        </div>
+  <section id="comments" class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
+  </section>
 
 
-    
-
-    <script src="/js/awesome-toc.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
+  </div>
+  
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Fusce eget urna vitae velit <em>eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque</em> penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Post</p>
 
 
-    
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
+      </div>
+    </footer>
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
+  
+  <script>
+   var disqus_shortname = 'fanzhoulll';
+   
+   var disqus_url = 'http://fanzhoulll.github.io/2016/08/13/beautyofprogramming/1_16/';
+   
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+  </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
 
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
