@@ -1,0 +1,689 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="-programming pearls -data structure," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="IntroductionActually, this column is not about search, but about the implementation of a data structure set, which is useful in many search applications, e.g, check if a given number exists in a list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search (column 13)">
+<meta property="og:url" content="http://yoursite.com/2016/08/29/programmingpearls/column13/index.html">
+<meta property="og:site_name" content="Fan Zhou">
+<meta property="og:description" content="IntroductionActually, this column is not about search, but about the implementation of a data structure set, which is useful in many search applications, e.g, check if a given number exists in a list">
+<meta property="og:updated_time" content="2016-08-29T03:51:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Search (column 13)">
+<meta name="twitter:description" content="IntroductionActually, this column is not about search, but about the implementation of a data structure set, which is useful in many search applications, e.g, check if a given number exists in a list">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/29/programmingpearls/column13/"/>
+
+  <title> Search (column 13) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Fan Zhou</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Search (column 13)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T09:07:38+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes of Programming Pearls</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/29/programmingpearls/column13/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/29/programmingpearls/column13/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Actually, this column is not about search, but about the implementation of a data structure <em>set</em>, which is useful in many search applications, e.g, check if a given number exists in a list of integers.</p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p><em>Set</em> is a collection of unique elements. We are focusing on ordered integer <em>set</em> here. So the elements are sorted integers. The main API is <code>insert()</code>, which is used to insert the item in correct position of the set if it not exists.</p>
+<p><em>Set</em> can be implemented with many representations. Here we give the implementation of <code>insert()</code> with (1) array, (2) linked list, (3) binary search tree and (4) bitmap. Then we summarize the time complexity of each operation (<em>insert</em>, <em>search</em>, <em>report</em>) with different representations.</p>
+<h3 id="Sorted-Array"><a href="#Sorted-Array" class="headerlink" title="Sorted Array"></a>Sorted Array</h3><p>Very straightforward and easy to implement.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, new_data)</span>:</span></div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i &lt; len(self.arr):</div><div class="line">        <span class="keyword">if</span> self.arr[i] == new_data:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">if</span> self.arr[i] &gt; new_data:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        i += <span class="number">1</span></div><div class="line">    self.arr.insert(i, new_data)</div><div class="line">    self.size += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span></div></pre></td></tr></table></figure>
+<p>The problem is that when we insert a new element at position <em>i</em> we have to re-allocate the space for all the existing elements after <em>i</em>, which requires O($n$) time and space ($n$ is set size). This can be avoided with linked list representation.</p>
+<h3 id="Linked-List"><a href="#Linked-List" class="headerlink" title="Linked List"></a>Linked List</h3><p>The most elegant way of doing insert with a sorted linked list is to use recursion:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rinsert</span><span class="params">(self, node, new_data)</span>:</span></div><div class="line">    <span class="comment"># Recursively add new data in sorted order if it does not exist</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</div><div class="line">        node = LinkedListNode(new_data, <span class="keyword">None</span>)</div><div class="line">        <span class="keyword">return</span> node</div><div class="line">    <span class="keyword">if</span> node.data &lt; new_data:</div><div class="line">        node.next = self.rinsert(node.next, new_data)</div><div class="line">    <span class="keyword">elif</span> node.data &gt; new_data:</div><div class="line">        node = LinkedListNode(new_data, node)</div><div class="line">    <span class="keyword">return</span> node</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, new_data)</span>:</span></div><div class="line">    self.list.head = self.rinsert(self.list.head, new_data)</div></pre></td></tr></table></figure>
+<p>We can further reduce the complexity of <code>insert</code> to $O(log(n))$ with tree structure.</p>
+<h3 id="Binary-Search-Tree"><a href="#Binary-Search-Tree" class="headerlink" title="Binary Search Tree"></a>Binary Search Tree</h3><p>Again, recursion is probably the easiest implementation in BST.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rinsert</span><span class="params">(self, node, new_data)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> node:</div><div class="line">        node = BstNode(data=new_data)</div><div class="line">        <span class="keyword">return</span> node</div><div class="line">    <span class="keyword">if</span> node.data &lt; new_data:</div><div class="line">        node.right = self.rinsert(node.right, new_data)</div><div class="line">    <span class="keyword">elif</span> node.data &gt; new_data:</div><div class="line">        node.left = self.rinsert(node.left, new_data)</div><div class="line">    <span class="keyword">return</span> node</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, new_data)</span>:</span></div><div class="line">    self.head = self.rinsert(self.head, new_data)</div></pre></td></tr></table></figure>
+<p>While this looks efficient, we can actually achieve O(1) <code>insert</code> with bitmap if the maximum integer in the set is known.</p>
+<h3 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p><a href="https://fanzhoulll.github.io/2016/07/27/programmingpearls/column1/" target="_blank" rel="external">Bitmap</a>  is our old friend. Bitmap allows us to insert new element in $O(1)$. However, the binary bit vector is not supported in high-level language. So we first have to represent bitmap with integer array.</p>
+<p>Note we can save any bit vector with its decimal representation. For example, we can simply use integer 3 to represent bits vector (<code>0011</code>), thus saving two numbers (1 and 2, denoted by the position of <code>1</code> in bit vector). Assuming one integer takes 4 byte (32 bits) in memory (just an example). Then saving a bitmap with maximum value $m$ requires $1+m/32$ integers.</p>
+<p>Next let us see how to save new integer <em>i</em> in bitmap. What we actually need to do is to <em>flip</em> the <em>i</em>‘s bit in the bitmap. We can do this by modifying the <em>i/32</em>‘s number in the array by setting <em>i%32</em>‘s bit in the number to be 1. This can simply be done by using <code>or</code> and <code>shift</code> operation:</p>
+<pre><code>x[i&gt;&gt;5] |= (1&lt;&lt;(i &amp; 0x1F))
+</code></pre><p>Note <code>i &amp; 0x1F</code> is equal with <code>i % Ox20</code>.</p>
+<p>In Python can test the memory usage of a integer by using function <code>sys.getsizeof()</code>. So the <code>insert</code> implementation is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max_val=<span class="number">100</span>)</span>:</span></div><div class="line">    self.BITSPERINT = sys.getsizeof(max_val)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, new_data)</span>:</span></div><div class="line">    self.bitmap[new_data/self.BITSPERINT] |= (<span class="number">1</span>&lt;&lt;(new_data%self.BITSPERINT))</div></pre></td></tr></table></figure>
+<h2 id="Summary-of-the-operation-complexity"><a href="#Summary-of-the-operation-complexity" class="headerlink" title="Summary of the operation complexity"></a>Summary of the operation complexity</h2><p>Assuming set size is $n$ and maximum value is $m$, the time complexity of each operation is summarized as followings:</p>
+<table>
+<thead>
+<tr>
+<th>Set Representation</th>
+<th style="text-align:right">insert</th>
+<th style="text-align:right">search</th>
+<th style="text-align:center">report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sorted array</td>
+<td style="text-align:right">$O(n)$</td>
+<td style="text-align:right">$O(n)$</td>
+<td style="text-align:center">$O(n)$</td>
+</tr>
+<tr>
+<td>Sorted linked list</td>
+<td style="text-align:right">$O(n)$</td>
+<td style="text-align:right">$O(n)$</td>
+<td style="text-align:center">$O(n)$</td>
+</tr>
+<tr>
+<td>Binary Search Tree</td>
+<td style="text-align:right">$O(log(n))$</td>
+<td style="text-align:right">$O(log(n))$</td>
+<td style="text-align:center">$O(n)$</td>
+</tr>
+<tr>
+<td>Bitmap</td>
+<td style="text-align:right">$O(1)$</td>
+<td style="text-align:right">$O(1)$</td>
+<td style="text-align:center">$O(m)$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><p>Actually, Python has already implemented the <a href="https://docs.python.org/2/library/sets.html" target="_blank" rel="external">set structure</a>. It supported various operations like <code>in</code>, <code>union</code>, <code>intersection</code>, etc. So next time, try to find a general tool before implementing it yourself :-)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/programming-pearls-data-structure/" rel="tag">#-programming pearls -data structure</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/19/programmingpearls/column12/" rel="next" title="A Sample Problem (column 11)">
+                <i class="fa fa-chevron-left"></i> A Sample Problem (column 11)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/content/images/avatar.jpg"
+               alt="Fan Zhou" />
+          <p class="site-author-name" itemprop="name">Fan Zhou</p>
+          <p class="site-description motion-element" itemprop="description">Ph.D @ Northeastern</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sorted-Array"><span class="nav-number">2.1.</span> <span class="nav-text">Sorted Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linked-List"><span class="nav-number">2.2.</span> <span class="nav-text">Linked List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Search-Tree"><span class="nav-number">2.3.</span> <span class="nav-text">Binary Search Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitmap"><span class="nav-number">2.4.</span> <span class="nav-text">Bitmap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-of-the-operation-complexity"><span class="nav-number">3.</span> <span class="nav-text">Summary of the operation complexity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan Zhou</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'fanzhoulll';
+      var disqus_identifier = '2016/08/29/programmingpearls/column13/';
+      var disqus_title = "Search (column 13)";
+      var disqus_url = 'http://yoursite.com/2016/08/29/programmingpearls/column13/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
