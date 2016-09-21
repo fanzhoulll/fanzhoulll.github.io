@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="description" content="IntroductionThis column introduce techniques to verify program correctness using an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted array x[0..n-1] contai">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Perspective of performance (column 6)">
-<meta property="og:url" content="http://yoursite.com/2016/08/02/programmingpearls/column6/index.html">
+<meta property="og:title" content="Writing correct program (column 4)">
+<meta property="og:url" content="http://yoursite.com/2016/07/30/programmingpearls/column4/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
-<meta property="og:updated_time" content="2016-08-04T14:20:35.000Z">
+<meta property="og:description" content="IntroductionThis column introduce techniques to verify program correctness using an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted array x[0..n-1] contai">
+<meta property="og:updated_time" content="2016-08-04T14:20:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Perspective of performance (column 6)">
-<meta name="twitter:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="twitter:title" content="Writing correct program (column 4)">
+<meta name="twitter:description" content="IntroductionThis column introduce techniques to verify program correctness using an example of binary search problem.
+Binary searchProblem definition: Determine whether a sorted array x[0..n-1] contai">
 
 
 
@@ -117,9 +117,9 @@ n-body problemThe n-b">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/02/programmingpearls/column6/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/30/programmingpearls/column4/"/>
 
-  <title> Perspective of performance (column 6) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Writing correct program (column 4) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -239,7 +239,7 @@ n-body problemThe n-b">
             
             
               
-                Perspective of performance (column 6)
+                Writing correct program (column 4)
               
             
           </h1>
@@ -251,8 +251,8 @@ n-body problemThe n-b">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T07:18:20-04:00" content="2016-08-02">
-              2016-08-02
+            <time itemprop="dateCreated" datetime="2016-07-30T20:09:00-04:00" content="2016-07-30">
+              2016-07-30
             </time>
           </span>
 
@@ -281,8 +281,8 @@ n-body problemThe n-b">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/02/programmingpearls/column6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/programmingpearls/column6/" itemprop="commentsCount"></span>
+                <a href="/2016/07/30/programmingpearls/column4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/30/programmingpearls/column4/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,65 +305,19 @@ n-body problemThe n-b">
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces <em>design levels</em> at which computer system is built, and the optimization of run-time efficiency on these levels with an example of <em>n-body problem</em>.</p>
-<h2 id="n-body-problem"><a href="#n-body-problem" class="headerlink" title="n-body problem"></a>n-body problem</h2><p>The <em>n-body problem</em> simulate motions of <em>n</em> objects in three-dimensional space, given their masses, positions, velocities and etc.</p>
-<p>Appel designed an efficient program that reduce the run-time from 1 year to 1 day ($n=10000$). The following table summarize modification on different design levels and corresponding speed up.</p>
-<table>
-<thead>
-<tr>
-<th>Design Levels</th>
-<th style="text-align:center">Speedup factor</th>
-<th style="text-align:center">Modification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Algorithms and Data Structures</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">Binary tree reduces O($n^2$) to O($nlog(n)$)</td>
-</tr>
-<tr>
-<td>Algorithm Tuning</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Larger time steps</td>
-</tr>
-<tr>
-<td>Data Structure Reorganization</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Produce clusters well-suited to tree algorithm</td>
-</tr>
-<tr>
-<td>Code Tuning 1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Using single precision floating point</td>
-</tr>
-<tr>
-<td>Code Tuning 2</td>
-<td style="text-align:center">2.5</td>
-<td style="text-align:center">Recode critical function in assembly</td>
-</tr>
-<tr>
-<td>Hardware</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Use a floating point accelerator</td>
-</tr>
-<tr>
-<td>Total</td>
-<td style="text-align:center">400</td>
-</tr>
-</tbody>
-</table>
-<p>Note the speedup was not free. The simple algorithm uses a few dozens of code while the fast program required 1200 lines.</p>
-<h2 id="Design-levels"><a href="#Design-levels" class="headerlink" title="Design levels"></a>Design levels</h2><p>A computer system is designed at levels ranging from high-level software structure down to the hardware. Specifically:</p>
-<p><em>Problem Definition:</em> We have seen the importance of defining problem in column 1.</p>
-<p><em>System structure:</em>  A designer should do a “back-of-the-envelope” (see Column 7) estimate to make sure the performance is in the right ballpark.</p>
-<p><em>Algorithms and Data Structures:</em> Needless to say.</p>
-<p><em>Code tuning:</em> Do not worth trying it in most cases.</p>
-<p><em>System Software:</em> Most likely do not have to worry about it neither.</p>
-<p><em>Hardware:</em> Faster hardware can increase performance.</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce techniques to verify program correctness using an example of binary search problem.</p>
+<h2 id="Binary-search"><a href="#Binary-search" class="headerlink" title="Binary search"></a>Binary search</h2><p><em>Problem definition:</em> Determine whether a sorted array <em>x[0..n-1]</em> contains element <em>t</em>.</p>
+<p><em>Solution:</em> This is a classical problem that can be solved using binary search. The idea is to check the middle element of array <em>x[mid]</em>. If <em>t&lt;x[mid]</em> then <em>t</em> must be on the left side of <em>x[mid]</em>, otherwise right side. So we can recursively search for <em>t</em> in smaller range, until we finally find <em>t</em> (or return -1 if it does not exist).</p>
+<p><em>Code:</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bsearch</span><span class="params">(arr, t, lo, hi)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Binary search, return position of value t if found, otherwise return -1</div><div class="line">    '''</div><div class="line">    <span class="keyword">if</span> hi &lt; lo:</div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line">    mid = (lo + hi)/<span class="number">2</span></div><div class="line">    <span class="keyword">if</span> (arr[mid] &gt; t):</div><div class="line">        bsearch(arr, t, lo, mid<span class="number">-1</span>)</div><div class="line">    <span class="keyword">elif</span> (arr[mid] &lt; t):</div><div class="line">        bsearch(arr, t, mid+<span class="number">1</span>, hi)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> mid</div></pre></td></tr></table></figure></p>
+<h2 id="Program-Verification"><a href="#Program-Verification" class="headerlink" title="Program Verification"></a>Program Verification</h2><p>Now we walk through it by verify each step in the code behaves exactly as we thought.</p>
+<p>We search for $t$ by shrinking a range <code>[lo, hi]</code> that contains <em>t</em>. Initially <code>lo = 0</code>, <code>hi = n-1</code>, so <em>t</em> must lies between <code>[lo, hi]</code> if it exists.</p>
+<p>Next we come into the loop. If <em>lo &gt; hi</em>, then there is no element between <code>[lo, hi]</code>. Thus <em>t</em> does not present in the array and we can return -1. Otherwise we check middle element <code>x[mid]</code>. If <code>t &lt; x[mid]</code>, then <em>t</em> must lies between <code>[lo, mid-1]</code>. If <code>t &gt; x[mid]</code>, then we can search in the range <code>[mid+1, hi]</code>. If <code>t = x[mid]</code>, then we have found  <em>t</em> and can return the position.</p>
+<p>After one iteration is finished, there are only three results: (1) <em>t</em> does not exist, return -1; (2) found <em>t</em>, return position; (3) <em>t</em> not found, search in the new range (with smaller size) where <em>t</em> should in.</p>
+<p>From above analysis we see that: (1) in each loop iteration is established；(2) each iteration preserve the truth (<em>t</em> must falls in the range between <code>[lo, hi]</code>); (3) the desired results is true (-1 if not exist, otherwise return position). Therefore we are confident that above code can output right answer.</p>
 <h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
-<li>Focus on the design level that might bring the largest speedup first (especially data structure/algorithm).</li>
-<li>Work at many levels if a big speedup is required.</li>
+<li>Verify correctness of loop: <em>Initialization</em> (loop invariant is well established), <em>Preservation</em> (truth is preserved during iteration) and <em>Termination</em> (desired result is obtained when terminates)</li>
+<li>Verify correctness of function: <em>precondition</em>: state mush be true before function called. <em>postcondition:</em> what function guarantee on termination.</li>
+<li>Resist the stupid idea to “just change it until it works”, make sure to understand the code at all time.</li>
 </ol>
 
       
@@ -396,16 +350,16 @@ n-body problemThe n-b">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/pythontips/forloop/" rel="next" title="For loop in python">
-                <i class="fa fa-chevron-left"></i> For loop in python
+              <a href="/2016/07/29/programmingpearls/column3/" rel="next" title="Data structure programs (column 3)">
+                <i class="fa fa-chevron-left"></i> Data structure programs (column 3)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/03/programmingpearls/column7/" rel="prev" title="The Back of the envelop (column 7)">
-                The Back of the envelop (column 7) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/01/programmingpearls/column5/" rel="prev" title="A small matter of programming (column 5)">
+                A small matter of programming (column 5) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,7 +481,7 @@ n-body problemThe n-b">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n-body-problem"><span class="nav-number">2.</span> <span class="nav-text">n-body problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-levels"><span class="nav-number">3.</span> <span class="nav-text">Design levels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-search"><span class="nav-number">2.</span> <span class="nav-text">Binary search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Verification"><span class="nav-number">3.</span> <span class="nav-text">Program Verification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
             
           </div>
         </section>
@@ -647,9 +601,9 @@ n-body problemThe n-b">
 
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoubeyond';
-      var disqus_identifier = '2016/08/02/programmingpearls/column6/';
-      var disqus_title = "Perspective of performance (column 6)";
-      var disqus_url = 'http://yoursite.com/2016/08/02/programmingpearls/column6/';
+      var disqus_identifier = '2016/07/30/programmingpearls/column4/';
+      var disqus_title = "Writing correct program (column 4)";
+      var disqus_url = 'http://yoursite.com/2016/07/30/programmingpearls/column4/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

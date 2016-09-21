@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="programming pearls," />
+  <meta name="keywords" content="algorithm," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="description" content="Problem: Given an array where every element appear twice except one. Find that only element which appears only once.
+Solution: The simplest idea is to iterator over the array and record how many times">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Perspective of performance (column 6)">
-<meta property="og:url" content="http://yoursite.com/2016/08/02/programmingpearls/column6/index.html">
+<meta property="og:title" content="Find missing elements">
+<meta property="og:url" content="http://yoursite.com/2016/08/03/beautyofprogramming/1_5/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
-<meta property="og:updated_time" content="2016-08-04T14:20:35.000Z">
+<meta property="og:description" content="Problem: Given an array where every element appear twice except one. Find that only element which appears only once.
+Solution: The simplest idea is to iterator over the array and record how many times">
+<meta property="og:updated_time" content="2016-08-04T14:42:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Perspective of performance (column 6)">
-<meta name="twitter:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="twitter:title" content="Find missing elements">
+<meta name="twitter:description" content="Problem: Given an array where every element appear twice except one. Find that only element which appears only once.
+Solution: The simplest idea is to iterator over the array and record how many times">
 
 
 
@@ -117,9 +117,9 @@ n-body problemThe n-b">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/02/programmingpearls/column6/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/03/beautyofprogramming/1_5/"/>
 
-  <title> Perspective of performance (column 6) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Find missing elements | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -239,7 +239,7 @@ n-body problemThe n-b">
             
             
               
-                Perspective of performance (column 6)
+                Find missing elements
               
             
           </h1>
@@ -251,8 +251,8 @@ n-body problemThe n-b">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T07:18:20-04:00" content="2016-08-02">
-              2016-08-02
+            <time itemprop="dateCreated" datetime="2016-08-03T23:32:46-04:00" content="2016-08-03">
+              2016-08-03
             </time>
           </span>
 
@@ -265,8 +265,8 @@ n-body problemThe n-b">
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Notes-of-Programming-Pearls/" itemprop="url" rel="index">
-                    <span itemprop="name">Notes of Programming Pearls</span>
+                  <a href="/categories/The-Art-of-Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">The Art of Algorithm</span>
                   </a>
                 </span>
 
@@ -281,8 +281,8 @@ n-body problemThe n-b">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/02/programmingpearls/column6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/programmingpearls/column6/" itemprop="commentsCount"></span>
+                <a href="/2016/08/03/beautyofprogramming/1_5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/03/beautyofprogramming/1_5/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,66 +305,18 @@ n-body problemThe n-b">
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces <em>design levels</em> at which computer system is built, and the optimization of run-time efficiency on these levels with an example of <em>n-body problem</em>.</p>
-<h2 id="n-body-problem"><a href="#n-body-problem" class="headerlink" title="n-body problem"></a>n-body problem</h2><p>The <em>n-body problem</em> simulate motions of <em>n</em> objects in three-dimensional space, given their masses, positions, velocities and etc.</p>
-<p>Appel designed an efficient program that reduce the run-time from 1 year to 1 day ($n=10000$). The following table summarize modification on different design levels and corresponding speed up.</p>
-<table>
-<thead>
-<tr>
-<th>Design Levels</th>
-<th style="text-align:center">Speedup factor</th>
-<th style="text-align:center">Modification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Algorithms and Data Structures</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">Binary tree reduces O($n^2$) to O($nlog(n)$)</td>
-</tr>
-<tr>
-<td>Algorithm Tuning</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Larger time steps</td>
-</tr>
-<tr>
-<td>Data Structure Reorganization</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Produce clusters well-suited to tree algorithm</td>
-</tr>
-<tr>
-<td>Code Tuning 1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Using single precision floating point</td>
-</tr>
-<tr>
-<td>Code Tuning 2</td>
-<td style="text-align:center">2.5</td>
-<td style="text-align:center">Recode critical function in assembly</td>
-</tr>
-<tr>
-<td>Hardware</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Use a floating point accelerator</td>
-</tr>
-<tr>
-<td>Total</td>
-<td style="text-align:center">400</td>
-</tr>
-</tbody>
-</table>
-<p>Note the speedup was not free. The simple algorithm uses a few dozens of code while the fast program required 1200 lines.</p>
-<h2 id="Design-levels"><a href="#Design-levels" class="headerlink" title="Design levels"></a>Design levels</h2><p>A computer system is designed at levels ranging from high-level software structure down to the hardware. Specifically:</p>
-<p><em>Problem Definition:</em> We have seen the importance of defining problem in column 1.</p>
-<p><em>System structure:</em>  A designer should do a “back-of-the-envelope” (see Column 7) estimate to make sure the performance is in the right ballpark.</p>
-<p><em>Algorithms and Data Structures:</em> Needless to say.</p>
-<p><em>Code tuning:</em> Do not worth trying it in most cases.</p>
-<p><em>System Software:</em> Most likely do not have to worry about it neither.</p>
-<p><em>Hardware:</em> Faster hardware can increase performance.</p>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
-<li>Focus on the design level that might bring the largest speedup first (especially data structure/algorithm).</li>
-<li>Work at many levels if a big speedup is required.</li>
-</ol>
+        <p><em>Problem: Given an array where every element appear twice except one. Find that only element which appears only once.</em></p>
+<p><strong>Solution:</strong> The simplest idea is to iterator over the array and record how many times an element appear. Time and space-complexity are both O(N).</p>
+<p>Clearly, it is possible to  reduce space-complexity.</p>
+<p><strong>Idea1:</strong> if one element has already appeared twice, we can delete that element. In this case worst case space-complexity is still O(N), but best case is O(1).</p>
+<p><strong>Idea2:</strong> If we want to strictly reduce the space-complexity to O(1), then we need a parameter that can save the status of all seen element.</p>
+<p>If all elements have appeared twice, then <em>xor</em> operation over all elements in the array should return zero. Otherwise it should return the missing element. This solution is optimal in both time and space.</p>
+<p><em>Further thinking: what if there are two elements missing ? What bout </em>N<em> elements missing?</em></p>
+<p>Assuming if <em>x</em> and <em>y</em> are missing. Then <em>xor</em> over all elements in the array will return x <em>xor</em> y. Unfortunately we still do not know x and y. So there is no particularly good way to solve this problem.</p>
+<p>However, if the array <em>pre-defined</em> (the original complete array is known), then it is possible to find the missing elements in O(N) time and O(1) space. We can simply add all the elements in the original array, and see the difference with the sum of incomplete array. Assuming the difference is <em>a</em>, then we have:</p>
+<pre><code>x + y = a
+</code></pre><p>We can easily construct another equation with x and y, like the difference square sum. With these two equations we can derive x and y directly.</p>
+<p>Likewise, if there are N elements missing we only have to construct N equations (maybe hard to though).</p>
 
       
     </div>
@@ -387,7 +339,7 @@ n-body problemThe n-b">
       
         <div class="post-tags">
           
-            <a href="/tags/programming-pearls/" rel="tag">#programming pearls</a>
+            <a href="/tags/algorithm/" rel="tag">#algorithm</a>
           
         </div>
       
@@ -396,16 +348,16 @@ n-body problemThe n-b">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/pythontips/forloop/" rel="next" title="For loop in python">
-                <i class="fa fa-chevron-left"></i> For loop in python
+              <a href="/2016/08/03/programmingpearls/column7/" rel="next" title="The Back of the envelop (column 7)">
+                <i class="fa fa-chevron-left"></i> The Back of the envelop (column 7)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/03/programmingpearls/column7/" rel="prev" title="The Back of the envelop (column 7)">
-                The Back of the envelop (column 7) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/05/programmingpearls/column8/" rel="prev" title="Algorithm design techniques (column 8)">
+                Algorithm design techniques (column 8) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,7 +479,7 @@ n-body problemThe n-b">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n-body-problem"><span class="nav-number">2.</span> <span class="nav-text">n-body problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-levels"><span class="nav-number">3.</span> <span class="nav-text">Design levels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>
@@ -647,9 +599,9 @@ n-body problemThe n-b">
 
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoubeyond';
-      var disqus_identifier = '2016/08/02/programmingpearls/column6/';
-      var disqus_title = "Perspective of performance (column 6)";
-      var disqus_url = 'http://yoursite.com/2016/08/02/programmingpearls/column6/';
+      var disqus_identifier = '2016/08/03/beautyofprogramming/1_5/';
+      var disqus_title = "Find missing elements";
+      var disqus_url = 'http://yoursite.com/2016/08/03/beautyofprogramming/1_5/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -663,24 +615,7 @@ n-body problemThe n-b">
       
         run_disqus_script('embed.js');
       
-    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

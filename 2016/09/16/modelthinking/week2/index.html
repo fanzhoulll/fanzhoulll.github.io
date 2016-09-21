@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="model thinking," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Aggregation - more is different !Aggregation of numbers
+Very often airline company sell tickets more than their actual capacity. Why would not they afraid of overbook ?
+
+Centralized Limit Theorem: if">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week 2 Aggregation & Decision models">
+<meta property="og:url" content="http://yoursite.com/2016/09/16/modelthinking/week2/index.html">
+<meta property="og:site_name" content="Fan Zhou">
+<meta property="og:description" content="Aggregation - more is different !Aggregation of numbers
+Very often airline company sell tickets more than their actual capacity. Why would not they afraid of overbook ?
+
+Centralized Limit Theorem: if">
+<meta property="og:updated_time" content="2016-09-16T23:58:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week 2 Aggregation & Decision models">
+<meta name="twitter:description" content="Aggregation - more is different !Aggregation of numbers
+Very often airline company sell tickets more than their actual capacity. Why would not they afraid of overbook ?
+
+Centralized Limit Theorem: if">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/16/modelthinking/week2/"/>
+
+  <title> Week 2 Aggregation & Decision models | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Fan Zhou</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Week 2 Aggregation & Decision models
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-16T16:42:23-04:00" content="2016-09-16">
+              2016-09-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Open-Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Open Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/16/modelthinking/week2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/16/modelthinking/week2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Aggregation-more-is-different"><a href="#Aggregation-more-is-different" class="headerlink" title="Aggregation - more is different !"></a>Aggregation - more is different !</h2><h3 id="Aggregation-of-numbers"><a href="#Aggregation-of-numbers" class="headerlink" title="Aggregation of numbers"></a>Aggregation of numbers</h3><blockquote>
+<p>Very often airline company sell tickets more than their actual capacity. Why would not they afraid of overbook ?</p>
+</blockquote>
+<p><strong>Centralized Limit Theorem:</strong> if we add up a bunch of individual, decisions made by $N$ individuals (like should went to the airport or not), then the distribution of final result gonna look like a bell curve looks like following.</p>
+<p>The bell curve can be described with mean value $\mu = p<em>N$ and standard deviation $\sigma = \sqrt{p(1-p)</em>N}$, where $p$ is the probability of certain decision and $N$ is the individuals numbers.  </p>
+<p>From above figure we can see:</p>
+<blockquote>
+<p>+- $\sigma$: 68%<br>+- 2<em>$\sigma$: 95%<br>+- 3</em>$\sigma$: 99.75%<br>…<br>+- 6*$\sigma$: 99.999966%</p>
+</blockquote>
+<p>Note +- 6*$\sigma$ is often used in quality control - it answers what is the acceptable deviation of each sample quality to satisfy <em>six sigma</em> standard.</p>
+<p><em>This explains why most of us are just so normal – we are bounded between the +-$\sigma$ !</em></p>
+<p>Now considering the above quesion:</p>
+<blockquote>
+<p>Assuming Boeing 747 have 380 seats. They estimate 90% show up rate. What is probability of selling more tickets than showing up passengers if selling 400 tickets ?</p>
+</blockquote>
+<p>Average number of showing people is $400<em>0.9 = 360$. Standard deviation is $\sqrt{0.9</em>0.1<em>400} = 6$. Since $380 &gt; 360 + 3</em>\sigma$, there is over 99.75% probability that Boeing won’t overbook.</p>
+<h2 id="Aggregation-of-Rules"><a href="#Aggregation-of-Rules" class="headerlink" title="Aggregation of Rules"></a>Aggregation of Rules</h2><blockquote>
+<p>Would things as complex as brain, stock market or even life, are actually formed by incredibly simple bits and rules ?</p>
+</blockquote>
+<p><strong>Game of life:</strong> Consider infinite cells on a plane. Cells can either be alive (on) or dead (off). Given following rules:</p>
+<ol>
+<li>If off, turn on if exactly 3 neighbors are on.</li>
+<li>If on, stay on if 2 or 3 neighbors are on, otherwise turn off.</li>
+</ol>
+<p>Turns out a bunch of patterns would occur given these two simple rules and a initial cell status. Following figure shows the gliding of a pattern:</p>
+<p>It is called <em>game of life</em> because it looks just like the evolving of life. Isn’t this fascinating ?</p>
+<p><strong>Cellular automate</strong>: Consider one dimensional situation. Where the on or off of certain cell decides on the status of its two neighbors. In this case it is possible to explore the results all possible rules (since there are only $2^8=256$ rules).  </p>
+<blockquote>
+<p>While this is not particular interesting, following figure can help us understand better how the rules are formed. Each rule is defined as the sum of collections of 8 <em>atom rules</em>. So the rule can be simply expressed as a binary vector. For example Rule 30 = 00011110, which denote the combination of <em>atom rule</em> 2,4,8,16.</p>
+</blockquote>
+<p>Wolfram classify the outcomes of 256 rules into four classes in his 1000 page book (he also develop Mathmatic, in his spare time while writing book I think): <em>fix</em>, <em>alternation</em>, <em>randomness</em> and <em>complex</em>.</p>
+<p>Langton find that the possibilities of chaos results is related with the number of “on” bits in the rules (denote by $\lambda$). Following figure summarize the results. It turns out the moderate interdependence ($\lambda$ close to average) lead to the highest randomness !</p>
+<p><strong>What it tell us:</strong></p>
+<ol>
+<li>Simple bits and rules can form any complex things only if…</li>
+<li>We add some interdependency between them !</li>
+</ol>
+<blockquote>
+<p>This explains why the stock market looks so crazy. Fundamentally, stock market is influenced by millions decisions of traders. However these decisions are correlated. If stock price going down, people start selling and hence further degrade the stock price – same thing applies when stock price raise up.</p>
+</blockquote>
+<h2 id="Aggregation-of-Preference"><a href="#Aggregation-of-Preference" class="headerlink" title="Aggregation of Preference"></a>Aggregation of Preference</h2><blockquote>
+<p> How does US citizens end up have to choose next their president from Hillary and Trump, even if they hate both ?</p>
+</blockquote>
+<p>Following toy example can explain: assuming three people have three difference preferences over apple, banana and coconuts.</p>
+<p>Assuming through pairwise comparison, we can get following aggregated preference:</p>
+<blockquote>
+<p>Coconut &gt; Apple<br>Banana &gt; Coconut<br>Apple &gt; Banana</p>
+</blockquote>
+<p>Clearly this preference is <em>irrational</em>. because if coconut &gt; apple and banana &gt; coconut, then banana should &gt; apple (we call this transition).</p>
+<p>This is called <strong>Voting paradox:</strong>  even if each personal is perfect rational when voting for their preference, the collective result might <strong>not be rational</strong>  at all !</p>
+<h2 id="Decision-tree"><a href="#Decision-tree" class="headerlink" title="Decision tree"></a>Decision tree</h2><blockquote>
+<p>How to make better decision ? How to predict other people’s decision according to their preference ?</p>
+</blockquote>
+<p><strong>Multi-Criterion Decision making:</strong> Easy to understand with an example.</p>
+<p> Say I want to buy a house and should decide between house A and house B. What I can do is to list all <em>factors</em> that influence our choice. Each <em>factor</em> is associated with <em>weight</em>, which denote how much do we care about the <em>factor</em>. Then by simply added up the total credits for house A and house B can we make the decision !</p>
+<blockquote>
+<p>It is possible, that after listing and calculating, we should choose house A. But somehow we just feel like choosing house B. This means that you might have ignored other important elements that influence your choice.</p>
+</blockquote>
+<p><strong>Spatial Choice Models:</strong> This is useful when we have already got an <em>ideal</em> candidate in mind. Also easy to understand with another example.</p>
+<p>Now we have to decide which burger restaurant to go. We can first quantitively list our expectation of all elements of the perfect burger. And then we list the actual elements of candidates and calculate the total |DIFFs| between the candidates and our expectation. After that we simply choose the one with smaller |DIFF|.  </p>
+<p>This model can also be used to infer the preference of other people. For example, say if a friend choose Big Mac. Then according to following table it is quite easy to infer that he like either patties or pickles or really hate tomatoes.</p>
+<p><strong>Decision Tree:</strong> My personal favorite. It deal with following questions:</p>
+<blockquote>
+<p>How to you choose when things have multiple branches ?</p>
+</blockquote>
+<p>Let us take a look at example.</p>
+<blockquote>
+<p>You want to buy ticket for a movie. Two choices: 3pm ticket for $200, but 40% won’t make it. Or buying 4pm ticket for $400. Which one do you choose ?</p>
+</blockquote>
+<p>The tradeoff of this dilemma can be made vividly clear by decision tree:</p>
+<p>So the potential cost of buying 3pm ticket is $0.6<em>600 + 0.4</em>600 = 360$. Since it is lower then the cost of 4pm ticket, we should buy 3pm one !</p>
+<p><strong>Key idea:</strong> draw the branches of every choice and calculate the reward of each branch backwardly.</p>
+<p>Finally, decision tree can also be used to calculate the <strong>value of information</strong>. The idea is to：</p>
+<ol>
+<li>Calculate value without information</li>
+<li>Calculate value with information</li>
+<li>Calculate the difference</li>
+</ol>
+<p>For example:</p>
+<blockquote>
+<p>You want to get a car. Option A: buy a car. Option B: rent for $500 every month. You have 40% chance that car company provide $1000 cash back starting next month. Now someone told you: I work for the company and can tell you whether you win it or not. How much do you think that information worth ?</p>
+</blockquote>
+<p>We first calculate the value without information. Note we got two choices: if we rent the value is $4<em>500 + 0.6</em>(-500) = -100$, if we buy value is 0. So we should choose to buy the car, which will give us 0.</p>
+<p>Then we calculate the cost with information. Two possibilities: we win the cash back, then definitely we will rent the car and get $500 (every month). Otherwise we can always buy the car and loss nothing. So the value is $0.4*500 = 200$</p>
+<p>As a result, the information of worth $200. So it still worth it if the guy charges you $100 for that information ;-)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/model-thinking/" rel="tag">#model thinking</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/28/programmingpearls/column13/" rel="next" title="Search (column 13)">
+                <i class="fa fa-chevron-left"></i> Search (column 13)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/content/images/avatar.jpg"
+               alt="Fan Zhou" />
+          <p class="site-author-name" itemprop="name">Fan Zhou</p>
+          <p class="site-description motion-element" itemprop="description">Ph.D @ Northeastern</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Aggregation-more-is-different"><span class="nav-number">1.</span> <span class="nav-text">Aggregation - more is different !</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Aggregation-of-numbers"><span class="nav-number">1.1.</span> <span class="nav-text">Aggregation of numbers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aggregation-of-Rules"><span class="nav-number">2.</span> <span class="nav-text">Aggregation of Rules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aggregation-of-Preference"><span class="nav-number">3.</span> <span class="nav-text">Aggregation of Preference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-tree"><span class="nav-number">4.</span> <span class="nav-text">Decision tree</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fan Zhou</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'fanzhoubeyond';
+      var disqus_identifier = '2016/09/16/modelthinking/week2/';
+      var disqus_title = "Week 2 Aggregation & Decision models";
+      var disqus_url = 'http://yoursite.com/2016/09/16/modelthinking/week2/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

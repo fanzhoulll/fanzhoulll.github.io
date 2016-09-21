@@ -84,19 +84,23 @@
 
 
 
-<meta name="description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Perspective of performance (column 6)">
-<meta property="og:url" content="http://yoursite.com/2016/08/02/programmingpearls/column6/index.html">
+<meta property="og:title" content="Data structure programs (column 3)">
+<meta property="og:url" content="http://yoursite.com/2016/07/29/programmingpearls/column3/index.html">
 <meta property="og:site_name" content="Fan Zhou">
-<meta property="og:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
-<meta property="og:updated_time" content="2016-08-04T14:20:35.000Z">
+<meta property="og:description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/questionnaire.png">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/info.png">
+<meta property="og:image" content="http://yoursite.com/content/images/2016/7/lettergenerator.png">
+<meta property="og:updated_time" content="2016-08-04T14:20:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Perspective of performance (column 6)">
-<meta name="twitter:description" content="IntroductionThis column introduces design levels at which computer system is built, and the optimization of run-time efficiency on these levels with an example of n-body problem.
-n-body problemThe n-b">
+<meta name="twitter:title" content="Data structure programs (column 3)">
+<meta name="twitter:description" content="IntroductionThis column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.
+Several examplesRepresent surveyConsider how to code followi">
+<meta name="twitter:image" content="http://yoursite.com/content/images/2016/7/questionnaire.png">
 
 
 
@@ -117,9 +121,9 @@ n-body problemThe n-b">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/02/programmingpearls/column6/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/07/29/programmingpearls/column3/"/>
 
-  <title> Perspective of performance (column 6) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Data structure programs (column 3) | Fan Zhou </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -239,7 +243,7 @@ n-body problemThe n-b">
             
             
               
-                Perspective of performance (column 6)
+                Data structure programs (column 3)
               
             
           </h1>
@@ -251,8 +255,8 @@ n-body problemThe n-b">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T07:18:20-04:00" content="2016-08-02">
-              2016-08-02
+            <time itemprop="dateCreated" datetime="2016-07-29T19:46:47-04:00" content="2016-07-29">
+              2016-07-29
             </time>
           </span>
 
@@ -281,8 +285,8 @@ n-body problemThe n-b">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/02/programmingpearls/column6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/programmingpearls/column6/" itemprop="commentsCount"></span>
+                <a href="/2016/07/29/programmingpearls/column3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/29/programmingpearls/column3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -305,65 +309,20 @@ n-body problemThe n-b">
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduces <em>design levels</em> at which computer system is built, and the optimization of run-time efficiency on these levels with an example of <em>n-body problem</em>.</p>
-<h2 id="n-body-problem"><a href="#n-body-problem" class="headerlink" title="n-body problem"></a>n-body problem</h2><p>The <em>n-body problem</em> simulate motions of <em>n</em> objects in three-dimensional space, given their masses, positions, velocities and etc.</p>
-<p>Appel designed an efficient program that reduce the run-time from 1 year to 1 day ($n=10000$). The following table summarize modification on different design levels and corresponding speed up.</p>
-<table>
-<thead>
-<tr>
-<th>Design Levels</th>
-<th style="text-align:center">Speedup factor</th>
-<th style="text-align:center">Modification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Algorithms and Data Structures</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">Binary tree reduces O($n^2$) to O($nlog(n)$)</td>
-</tr>
-<tr>
-<td>Algorithm Tuning</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Larger time steps</td>
-</tr>
-<tr>
-<td>Data Structure Reorganization</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Produce clusters well-suited to tree algorithm</td>
-</tr>
-<tr>
-<td>Code Tuning 1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Using single precision floating point</td>
-</tr>
-<tr>
-<td>Code Tuning 2</td>
-<td style="text-align:center">2.5</td>
-<td style="text-align:center">Recode critical function in assembly</td>
-</tr>
-<tr>
-<td>Hardware</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">Use a floating point accelerator</td>
-</tr>
-<tr>
-<td>Total</td>
-<td style="text-align:center">400</td>
-</tr>
-</tbody>
-</table>
-<p>Note the speedup was not free. The simple algorithm uses a few dozens of code while the fast program required 1200 lines.</p>
-<h2 id="Design-levels"><a href="#Design-levels" class="headerlink" title="Design levels"></a>Design levels</h2><p>A computer system is designed at levels ranging from high-level software structure down to the hardware. Specifically:</p>
-<p><em>Problem Definition:</em> We have seen the importance of defining problem in column 1.</p>
-<p><em>System structure:</em>  A designer should do a “back-of-the-envelope” (see Column 7) estimate to make sure the performance is in the right ballpark.</p>
-<p><em>Algorithms and Data Structures:</em> Needless to say.</p>
-<p><em>Code tuning:</em> Do not worth trying it in most cases.</p>
-<p><em>System Software:</em> Most likely do not have to worry about it neither.</p>
-<p><em>Hardware:</em> Faster hardware can increase performance.</p>
-<h2 id="Takeaway"><a href="#Takeaway" class="headerlink" title="Takeaway"></a>Takeaway</h2><ol>
-<li>Focus on the design level that might bring the largest speedup first (especially data structure/algorithm).</li>
-<li>Work at many levels if a big speedup is required.</li>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This column introduce the importance of choosing right data structure: it can make program much shorter and easier to maintain.</p>
+<h2 id="Several-examples"><a href="#Several-examples" class="headerlink" title="Several examples"></a>Several examples</h2><h3 id="Represent-survey"><a href="#Represent-survey" class="headerlink" title="Represent survey"></a>Represent survey</h3><p>Consider how to code following questionnaire filled by students of a specific college.</p>
+<p><img src="/content/images/2016/7/questionnaire.png" alt="questionnaire"></p>
+<p>Actual questionnaire is much more complicated. The recommended way to store number is using array. For example, the array could be laid out according to output structure along the three dimensions of <em>campus</em>, <em>ethnic group</em> and all the <em>columns</em> in questionnaire.</p>
+<h3 id="Form-Letter-Programming"><a href="#Form-Letter-Programming" class="headerlink" title="Form-Letter Programming"></a>Form-Letter Programming</h3><p>Think how to print following information:</p>
+<p><img src="/content/images/2016/7/info.png" alt="info"></p>
+<p>A simple but tedious way was to use a sequence of print, while a better approach involves writing a form letter generator relies on a form letter schema like:</p>
+<p><img src="/content/images/2016/7/lettergenerator.png" alt="lettergenerator"></p>
+<p>Then we could print the scheme as it is if the letter is not <code>$</code>, otherwise we retrieve the corresponding field in the database as specified by the number following <code>$</code> and print it.</p>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p><em>Error message:</em> Instead of scatter hundreds of error messages throughout the code, it is better to access them using a single function.</p>
+<p><em>Word analysis:</em> Consider the application of removing the endings (‘-ing’, ‘-s’, ‘-ed’,etc). Using table to save the common ending can shorten the code length greatly.</p>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><ol>
+<li>A long stretch of similar code is often best expressed by array.</li>
+<li>Let the data structure the program: before writing code, good programmers thoroughly understand the input, the output and intermediate data structures around which programs are built.</li>
 </ol>
 
       
@@ -396,16 +355,16 @@ n-body problemThe n-b">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/pythontips/forloop/" rel="next" title="For loop in python">
-                <i class="fa fa-chevron-left"></i> For loop in python
+              <a href="/2016/07/27/programmingpearls/column2/" rel="next" title="AHA! Algorithms (column 2)">
+                <i class="fa fa-chevron-left"></i> AHA! Algorithms (column 2)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/03/programmingpearls/column7/" rel="prev" title="The Back of the envelop (column 7)">
-                The Back of the envelop (column 7) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/30/programmingpearls/column4/" rel="prev" title="Writing correct program (column 4)">
+                Writing correct program (column 4) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -527,7 +486,7 @@ n-body problemThe n-b">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n-body-problem"><span class="nav-number">2.</span> <span class="nav-text">n-body problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-levels"><span class="nav-number">3.</span> <span class="nav-text">Design levels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaway"><span class="nav-number">4.</span> <span class="nav-text">Takeaway</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Several-examples"><span class="nav-number">2.</span> <span class="nav-text">Several examples</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Represent-survey"><span class="nav-number">2.1.</span> <span class="nav-text">Represent survey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Form-Letter-Programming"><span class="nav-number">2.2.</span> <span class="nav-text">Form-Letter Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">2.3.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Takeaways"><span class="nav-number">3.</span> <span class="nav-text">Takeaways</span></a></li></ol></div>
             
           </div>
         </section>
@@ -647,9 +606,9 @@ n-body problemThe n-b">
 
     <script type="text/javascript">
       var disqus_shortname = 'fanzhoubeyond';
-      var disqus_identifier = '2016/08/02/programmingpearls/column6/';
-      var disqus_title = "Perspective of performance (column 6)";
-      var disqus_url = 'http://yoursite.com/2016/08/02/programmingpearls/column6/';
+      var disqus_identifier = '2016/07/29/programmingpearls/column3/';
+      var disqus_title = "Data structure programs (column 3)";
+      var disqus_url = 'http://yoursite.com/2016/07/29/programmingpearls/column3/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
